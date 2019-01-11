@@ -1,10 +1,12 @@
 package com.example.fang.walmartproject.login;
 
 import android.app.Activity;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.os.Bundle;
 
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ public class LoginActivity extends Activity {
     AppBarLayout appBarLayout;
     Button loginButton;
     EditText loginEditText;
+    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         appBarLayout = findViewById(R.id.appBarLayout_login);
         loginEditText = findViewById(R.id.ed_phone_sign);
+        collapsingToolbarLayout = findViewById(R.id.collapsing);
         final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setActionBar(mToolbar);
@@ -31,7 +35,6 @@ public class LoginActivity extends Activity {
         loginEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appBarLayout.setVisibility(View.GONE);
 
             }
         });
@@ -41,7 +44,7 @@ public class LoginActivity extends Activity {
             public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
                 int scrollRange = appBarLayout.getTotalScrollRange();
 
-                if (scrollRange  == i) {
+                if (scrollRange + i ==0) {
                     loginButton.setVisibility(View.VISIBLE);
                 }
             }
