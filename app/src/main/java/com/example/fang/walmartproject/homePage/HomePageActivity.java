@@ -55,6 +55,8 @@ public class HomePageActivity extends AppCompatActivity
 
         homePagePresenter = new HomePagePresenter(this);
 
+        this.showShopList();
+
     }
 
     @Override

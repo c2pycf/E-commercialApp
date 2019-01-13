@@ -11,6 +11,7 @@ public interface HomePageContract {
         void showProfile();
 
         void showShopList();
+
     }
 
     interface HomePresenter{
@@ -26,10 +27,14 @@ public interface HomePageContract {
 
     interface ShopView{
         void showList(List<CategoryItem> itemList);
+
+        void showSubCategory(String cid);
     }
 
     interface ShopPresenter{
        void getCategoryList();
+
+       void onItemClickHandled(String cid);
     }
 
 }

@@ -31,7 +31,7 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
 
     @Override
     public void getCategoryList() {
-        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?api_key=8681b2e6966b1145da38e0efab9ed8b5&user_id=1525";
+        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?api_key=362c84de326feb551cf0614d0d78aa74&user_id=1525";
         final List<CategoryItem> itemList= new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -62,5 +62,10 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
         });
 
         volley.addToRequestQueue(stringRequest,"Category_list");
+    }
+
+    @Override
+    public void onItemClickHandled(String cid) {
+        mView.showSubCategory(cid);
     }
 }

@@ -33,4 +33,8 @@
     <string name="nav_menu_sign_in">Sign in</string>
     <string name="update_bt">Update</string>
     <string name="reset_bt">Reset</string>
+    <string name="product_detail_add_cart">Add to Cart</string>
+    <string name="description"><b>Description</b></string>
+    <string name="amount">Amount</string>
+    <string name="user_reviews"><b>Product Reviews</b></string>
 </resources>

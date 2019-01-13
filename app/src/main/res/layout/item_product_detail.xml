@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="20sp"
+            android:id="@+id/tv_product__title_detail"
+            android:padding="@dimen/text_margin"
+            android:text="@string/login_button_sign"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/tc_product_rate"
+            android:padding="5dp"
+            android:text="@string/user_reviews"
+            android:textSize="12sp"/>
+
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="204dp"
+                android:layout_height="117dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_gravity="center"
+                android:id="@+id/nv_product_image_detail"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:textSize="30sp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/tv_product_prise_detail"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/tv_product_quality_detail"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:id="@+id/tv_amount"
+                android:text="@string/amount"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/sp_product_count">
+
+            </android.support.v7.widget.AppCompatSpinner>
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_gravity="center"
+            android:text="@string/product_detail_add_cart"
+            android:id="@+id/bt_add_cart"
+            android:onClick="onAddCortClicked"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -6,44 +6,51 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
-import com.example.fang.walmartproject.data.CategoryItem;
+
+import com.example.fang.walmartproject.data.SubCategoryItem;
+
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter{
-    private List<CategoryItem> mCategoryItemLists;
-    private OnItemClickListener mListener;
-    static private String TAG = CategoryAdapter.class.getSimpleName();
+public class SubCategoryAdapter extends  RecyclerView.Adapter{
+    private List<SubCategoryItem> mCategoryItemLists;
 
-    public CategoryAdapter(List<CategoryItem> mCategoryItemLists, OnItemClickListener listener) {
+    static private final String TAG = SubCategoryAdapter.class.getSimpleName();
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(SubCategoryItem item);
+    }
+
+    public SubCategoryAdapter(List<SubCategoryItem> mCategoryItemLists,OnItemClickListener listener) {
         this.mCategoryItemLists = mCategoryItemLists;
-        mListener=listener;
+        mListener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-       View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_category,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_category,viewGroup,false);
 
-       return new CategoryViewHolder(view);
+        return new SubCategoryAdapter.CategoryViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        CategoryViewHolder categoryViewHolder = (CategoryViewHolder) viewHolder;
-        CategoryItem item = mCategoryItemLists.get(i);
-        ((CategoryViewHolder) viewHolder).setItemListener(item,mListener);
-        categoryViewHolder.categoryTextView.setText(item.getCname());
+        SubCategoryAdapter.CategoryViewHolder categoryViewHolder = (SubCategoryAdapter.CategoryViewHolder) viewHolder;
+        SubCategoryItem item = mCategoryItemLists.get(i);
+        categoryViewHolder.setItemListener(item,mListener);
+        categoryViewHolder.categoryTextView.setText(item.getScname());
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-        categoryViewHolder.categoryImage.setImageUrl(item.getCimageurl(),imageLoader);
-        categoryViewHolder.categoryImage.setContentDescription(item.getCdiscription());
+        categoryViewHolder.categoryImage.setImageUrl(item.getScimageurl(),imageLoader);
+        categoryViewHolder.categoryImage.setContentDescription(item.getScdiscription());
 
 
 
@@ -65,7 +72,7 @@ public class CategoryAdapter extends RecyclerView.Adapter{
 
         }
 
-        void setItemListener(final CategoryItem item, final OnItemClickListener listener){
+        void setItemListener(final SubCategoryItem item, final OnItemClickListener listener){
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -74,9 +81,5 @@ public class CategoryAdapter extends RecyclerView.Adapter{
                 }
             });
         }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(CategoryItem item);
     }
 }

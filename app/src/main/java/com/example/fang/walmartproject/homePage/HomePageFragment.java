@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.adapter.CategoryAdapter;
 import com.example.fang.walmartproject.data.CategoryItem;
+import com.example.fang.walmartproject.subcategory.SubCategoryFragment;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class HomePageFragment extends Fragment implements HomePageContract.ShopV
         GridLayoutManager manager = new GridLayoutManager(view.getContext(),2);
         categoryView.setLayoutManager(manager);
         categoryView.setItemAnimator(new DefaultItemAnimator());
+        getActivity().setTitle("Category");
 
         return view;
     }
@@ -49,8 +52,26 @@ public class HomePageFragment extends Fragment implements HomePageContract.ShopV
 
     @Override
     public void showList(List<CategoryItem> itemList) {
-        CategoryAdapter adapter = new CategoryAdapter(itemList);
+        CategoryAdapter adapter = new CategoryAdapter(itemList, new CategoryAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(CategoryItem item) {
+                String cid = item.getCid();
+                mShopPresenter.onItemClickHandled(cid);
+            }
+        });
         categoryView.setAdapter(adapter);
 
     }
+
+    @Override
+    public void showSubCategory(String cid) {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        SubCategoryFragment subCategoryFragment = new SubCategoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("cid",cid);
+        subCategoryFragment.setArguments(bundle);
+        manager.beginTransaction().replace(R.id.home_page_content,subCategoryFragment).addToBackStack(null).commit();
+    }
+
+
 }
