@@ -3,6 +3,7 @@ import com.example.fang.walmartproject.R;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
@@ -10,5 +11,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+    }
+
+    public void onContinueClicked(View view){
+        //Not implement yet
     }
 }

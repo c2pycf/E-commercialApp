@@ -82,7 +82,6 @@
         app:layout_anchor="@id/collapsing"
         app:layout_anchorGravity="bottom">
 
-
     </include>
 
 

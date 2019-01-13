@@ -1,12 +1,18 @@
 package com.example.fang.walmartproject.login;
 
 public interface LoginContract {
-    interface LoginView{}
+    interface LoginView{
+        void showToast(String message);
+
+        void startRegistration();
+
+        void finishSignIn();
+    }
 
     interface FogetView{}
 
     interface  LoginPresenter{
-        void onLoginHandled();
+        void onLoginHandled(String phone, String password);
 
         void onForgetHandled();
 

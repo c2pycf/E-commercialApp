@@ -4,7 +4,7 @@
     android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_marginTop="250dp">
 
     <EditText
         android:id="@+id/ed_phone_sign"
@@ -50,7 +50,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/bt_login"
         android:text="@string/login_button_sign"
-        android:visibility="invisible"
         android:onClick="onLoginClicked"/>
 
 </LinearLayout>

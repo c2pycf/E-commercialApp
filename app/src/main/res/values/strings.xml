@@ -2,8 +2,8 @@
     <string name="app_name">WalmartProject</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Welcome</string>
+    <string name="nav_header_subtitle">Walmart</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="sign_in_title">Sign in</string>
@@ -19,4 +19,18 @@
     <string name="forget_subtitle">We\'ll sent you a code to reset it.</string>
     <string name="email_forget">Email(required)</string>
     <string name="continue_bt">CONTINUE</string>
+    <string name="first_name_re">First name*</string>
+    <string name="last_name_re">Last name*</string>
+    <string name="email_re">Email*</string>
+    <string name="password_re">Password*</string>
+    <string name="address_re">Address*</string>
+    <string name="phone_re">Phone*</string>
+    <string name="terms_of_use"><u>Term of Use</u></string>
+    <string name="policy"><u>Privacy Policy</u></string>
+    <string name="nav_menu_profile">Profile</string>
+    <string name="nav_menu_shop">Shop</string>
+    <string name="nav_menu_order">My Order</string>
+    <string name="nav_menu_sign_in">Sign in</string>
+    <string name="update_bt">Update</string>
+    <string name="reset_bt">Reset</string>
 </resources>

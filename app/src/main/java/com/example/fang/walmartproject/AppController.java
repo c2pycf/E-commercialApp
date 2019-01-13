@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 
 public class AppController extends Application {
     public static final String TAG = AppController.class.getSimpleName();
+    private static int SIGN_FLAG = 0;
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
@@ -65,5 +66,13 @@ public class AppController extends Application {
         if(mRequestQueue!=null){
             mRequestQueue.cancelAll(tag);
         }
+    }
+
+    public int getSignFlag(){
+        return SIGN_FLAG;
+    }
+
+    public void setSignFlag(){
+        SIGN_FLAG = 1;
     }
 }
