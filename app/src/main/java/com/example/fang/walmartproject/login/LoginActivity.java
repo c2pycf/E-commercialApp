@@ -7,9 +7,12 @@ import android.os.Bundle;
 
 
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
 
@@ -19,6 +22,7 @@ public class LoginActivity extends Activity {
     AppBarLayout appBarLayout;
     Button loginButton;
     EditText loginEditText;
+    ConstraintLayout constraintLayout;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
@@ -28,9 +32,12 @@ public class LoginActivity extends Activity {
         appBarLayout = findViewById(R.id.appBarLayout_login);
         loginEditText = findViewById(R.id.ed_phone_sign);
         collapsingToolbarLayout = findViewById(R.id.collapsing);
+        constraintLayout = findViewById(R.id.appbar_content);
         final Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setActionBar(mToolbar);
+
+       
 
         loginEditText.setOnClickListener(new View.OnClickListener() {
             @Override
