@@ -1,4 +1,4 @@
-package com.example.fang.walmartproject.adapter;
+package com.example.fang.walmartproject.data;
 
 import com.example.fang.walmartproject.data.Product;
 
@@ -17,10 +17,13 @@ public class Cart {
     public List<Product> getmCart() {
         return mCart;
     }
-    
-    public void addProduct(Product product){
-        mCart.add(product);
-        totalPrize = totalPrize + Integer.parseInt(product.getPrize());
+
+    public void addProduct(Product product,int amount){
+        if(amount<=Integer.parseInt(product.getQuantity())){
+            product.setUserAmount(amount);
+            mCart.add(product);
+            totalPrize = totalPrize + (Integer.parseInt(product.getPrize()))*amount;
+        }
     }
 
     public void setmCart(List<Product> mCart) {

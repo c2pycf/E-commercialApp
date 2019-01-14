@@ -37,4 +37,6 @@
     <string name="description"><b>Description</b></string>
     <string name="amount">Amount</string>
     <string name="user_reviews"><b>Product Reviews</b></string>
+    <string name="product_total">Total</string>
+    <string name="bt_cart">Shopping cart</string>
 </resources>

@@ -19,6 +19,7 @@ import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.data.Product;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -75,8 +76,11 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ImageLoader imageLoader = AppController.getInstance().getImageLoader();
                 productDetailViewHolder.pName.setText(product.getPname());
                 productDetailViewHolder.pImage.setImageUrl(product.getImage(),imageLoader);
+                productDetailViewHolder.pQuantity.setText(product.getQuantity());
                 int count = Integer.parseInt(product.getQuantity());
-                productDetailViewHolder.pPrise.setText(product.getPrize());
+                NumberFormat format = NumberFormat.getCurrencyInstance();
+                int prise = Integer.parseInt(product.getPrize());
+                productDetailViewHolder.pPrise.setText(format.format(prise));
                 productDetailViewHolder.addCartButton.setOnClickListener(mListener);
                 Integer[] items = new Integer[count];
                 for(int index = 0; index < count;index++){

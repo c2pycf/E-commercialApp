@@ -32,4 +32,9 @@ public class HomePagePresenter implements HomePageContract.HomePresenter {
     public void onOrderHandled() {
 
     }
+
+    @Override
+    public void onCartOpen() {
+        mView.showCart();
+    }
 }

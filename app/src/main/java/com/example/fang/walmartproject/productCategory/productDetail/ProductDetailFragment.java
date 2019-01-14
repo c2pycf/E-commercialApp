@@ -22,7 +22,6 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     ProductDetailContract.DetailPresenter mPresenter;
 
     public ProductDetailFragment() {
-        mPresenter = new ProductDetailPresenter(this);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         ProductDetailAdapter adapter = new ProductDetailAdapter(mProduct, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.onAddCartHandled();
+                mPresenter.onAddCartHandled(mProduct);
             }
         });
         recyclerView.setAdapter(adapter);
@@ -56,6 +55,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mPresenter = new ProductDetailPresenter(this);
 
         return view;
     }

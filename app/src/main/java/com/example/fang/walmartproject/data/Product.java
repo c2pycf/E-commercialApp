@@ -7,6 +7,7 @@ public class Product {
     String prize;
     String discription;
     String image;
+    int userAmount;
 
     public Product(String id, String pname, String quantity, String prize, String discription, String image) {
         this.id = id;
@@ -15,6 +16,14 @@ public class Product {
         this.prize = prize;
         this.discription = discription;
         this.image = image;
+    }
+
+    public int getUserAmount() {
+        return userAmount;
+    }
+
+    public void setUserAmount(int userAmount) {
+        this.userAmount = userAmount;
     }
 
     public String getId() {

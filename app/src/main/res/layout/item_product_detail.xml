@@ -52,13 +52,22 @@
             android:layout_height="40dp"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:text="@string/product_total"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="20dp"
                     android:id="@+id/tv_product_quality_detail"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginStart="100dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
             <TextView

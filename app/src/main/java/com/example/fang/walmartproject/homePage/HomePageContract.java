@@ -12,6 +12,8 @@ public interface HomePageContract {
 
         void showShopList();
 
+        void showCart();
+
     }
 
     interface HomePresenter{
@@ -22,6 +24,8 @@ public interface HomePageContract {
         void onShopHandled();
 
         void onOrderHandled();
+
+        void onCartOpen();
 
     }
 
