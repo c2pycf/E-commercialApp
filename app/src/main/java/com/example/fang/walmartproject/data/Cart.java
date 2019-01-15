@@ -18,16 +18,14 @@ public class Cart {
         return mCart;
     }
 
-    public void addProduct(Product product,int amount){
-        if(amount<=Integer.parseInt(product.getQuantity())){
-            product.setUserAmount(amount);
-            mCart.add(product);
-            totalPrize = totalPrize + (Integer.parseInt(product.getPrize()))*amount;
-        }
+    public void addProduct(Product product){
+        mCart.add(product);
+        totalPrize = totalPrize
+                + (Integer.parseInt(product.getPrize()))* (product.getUserAmount());
     }
 
-    public void setmCart(List<Product> mCart) {
-        this.mCart = mCart;
+    public Product getProduct(int i){
+        return mCart.get(i);
     }
 
     public int getTotalPrize() {
@@ -37,4 +35,9 @@ public class Cart {
     public void setTotalPrize(int totalPrize) {
         this.totalPrize = totalPrize;
     }
+
+    public int getCartSize(){
+        return mCart.size();
+    }
+
 }

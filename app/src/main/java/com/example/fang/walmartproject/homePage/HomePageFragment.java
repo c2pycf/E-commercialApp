@@ -26,8 +26,7 @@ public class HomePageFragment extends Fragment implements HomePageContract.ShopV
     AppController volley;
     HomepageFragmentPresenter mShopPresenter;
     public HomePageFragment() {
-        volley = AppController.getInstance();
-        mShopPresenter = new HomepageFragmentPresenter(this);
+
     }
 
     @Nullable
@@ -39,6 +38,8 @@ public class HomePageFragment extends Fragment implements HomePageContract.ShopV
         categoryView.setLayoutManager(manager);
         categoryView.setItemAnimator(new DefaultItemAnimator());
         getActivity().setTitle("Category");
+        volley = AppController.getInstance();
+        mShopPresenter = new HomepageFragmentPresenter(this);
 
         return view;
     }

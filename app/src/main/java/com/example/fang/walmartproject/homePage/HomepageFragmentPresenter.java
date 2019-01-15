@@ -9,6 +9,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.CategoryItem;
+import com.example.fang.walmartproject.data.source.UserDataSource;
+import com.example.fang.walmartproject.data.source.UserRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,15 +25,25 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
     HomePageContract.ShopView mView;
     AppController volley;
     static private final String TAG = HomepageFragmentPresenter.class.getSimpleName();
+    UserDataSource reprository;
 
     public HomepageFragmentPresenter(HomePageFragment context) {
         this.mView = context;
         volley = AppController.getInstance();
+        reprository = new UserRepository(context.getContext());
     }
 
     @Override
     public void getCategoryList() {
-        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?api_key=362c84de326feb551cf0614d0d78aa74&user_id=1525";
+        String api = "3af40bba96cf53da337b880bade47479";
+        String id = "1525";
+        if(reprository.getUser()!=null) {
+            api = reprository.getUser().getUserAppApiKey();
+            id = reprository.getUser().getUserId();
+
+
+        }
+        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?api_key=" + api + "&user_id="+id;
         final List<CategoryItem> itemList= new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

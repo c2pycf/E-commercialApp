@@ -2,6 +2,7 @@ package com.example.fang.walmartproject.data.source;
 
 import android.content.Context;
 
+import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.data.source.local.CartLocalDataSource;
 
@@ -21,7 +22,7 @@ public class CartRepository implements CartDataSource {
     }
 
     @Override
-    public List<Product> getCarts() {
+    public Cart getCarts() {
         return null;
     }
 
@@ -32,6 +33,12 @@ public class CartRepository implements CartDataSource {
 
     @Override
     public void deleteProduct(String id) {
+
+    }
+
+    @Override
+    public void update(Product product) {
+        localDataSource.update(product);
 
     }
 }

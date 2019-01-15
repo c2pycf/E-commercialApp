@@ -14,6 +14,10 @@ public interface HomePageContract {
 
         void showCart();
 
+        void signOut();
+
+
+
     }
 
     interface HomePresenter{
@@ -26,6 +30,8 @@ public interface HomePageContract {
         void onOrderHandled();
 
         void onCartOpen();
+
+        void onSignOutHandled();
 
     }
 

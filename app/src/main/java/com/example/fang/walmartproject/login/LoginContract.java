@@ -9,7 +9,9 @@ public interface LoginContract {
         void finishSignIn();
     }
 
-    interface FogetView{}
+    interface ForgetView{
+        void showToast(String message);
+    }
 
     interface  LoginPresenter{
         void onLoginHandled(String phone, String password);
@@ -19,5 +21,7 @@ public interface LoginContract {
         void onCreateHandled();
     }
 
-    interface  FogetPresenter{}
+    interface  ForgetPresenter{
+        void onContinue(String email);
+    }
 }

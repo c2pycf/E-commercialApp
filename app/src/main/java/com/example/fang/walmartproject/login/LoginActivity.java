@@ -17,6 +17,7 @@ import android.widget.Toolbar;
 
 
 import com.example.fang.walmartproject.R;
+import com.example.fang.walmartproject.homePage.HomePageActivity;
 
 public class LoginActivity extends Activity implements LoginContract.LoginView{
     AppBarLayout appBarLayout;
@@ -98,6 +99,8 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
     @Override
     public void finishSignIn() {
         SIGN_FLAG=1;
+//        Intent homeIntent = new Intent(LoginActivity.this,HomePageActivity.class);
+//        startActivity(homeIntent);
         finish();
     }
 }

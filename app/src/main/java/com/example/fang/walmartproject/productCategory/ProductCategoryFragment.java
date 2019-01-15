@@ -27,7 +27,7 @@ public class ProductCategoryFragment extends Fragment implements ProductCategory
 
     static private final String TAG = ProductCategoryFragment.class.getSimpleName();
     public ProductCategoryFragment() {
-        mPresenter = new ProductCategoryPresenter(this);
+
     }
 
     @Nullable
@@ -37,7 +37,7 @@ public class ProductCategoryFragment extends Fragment implements ProductCategory
         getActivity().setTitle("Product List");
         recyclerView = view.findViewById(R.id.home_recycle_view);
         LinearLayoutManager manager = new LinearLayoutManager(container.getContext());
-
+        mPresenter = new ProductCategoryPresenter(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         return view;

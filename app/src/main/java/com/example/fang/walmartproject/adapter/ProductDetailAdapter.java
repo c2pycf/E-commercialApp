@@ -1,5 +1,6 @@
 package com.example.fang.walmartproject.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.CardView;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -29,10 +31,15 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     static private int PRODUCT_DESCRIPTION_CARD = 1;
     static private int PRODUCT_REVIEW_CARD = 2;
     View.OnClickListener mListener;
+    Context context;
+    AdapterView.OnItemSelectedListener spinnerListener;
 
-    public ProductDetailAdapter(Product product, View.OnClickListener listener) {
+
+    public ProductDetailAdapter(Product product, View.OnClickListener listener, Context context, AdapterView.OnItemSelectedListener spinnerListener) {
         this.product = product;
         mListener = listener;
+        this.context = context;
+        this.spinnerListener = spinnerListener;
     }
 
     @NonNull
@@ -84,10 +91,12 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 productDetailViewHolder.addCartButton.setOnClickListener(mListener);
                 Integer[] items = new Integer[count];
                 for(int index = 0; index < count;index++){
-                    items[index] = index;
+                    items[index] = index+1;
                 }
-                //ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_dropdown_item,items);
-                //productDetailViewHolder.itemCount.setAdapter(adapter);
+                ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(context,android.R.layout.simple_spinner_dropdown_item,items);
+                productDetailViewHolder.itemCount.setAdapter(adapter);
+                productDetailViewHolder.itemCount.setSelection(0);
+                productDetailViewHolder.itemCount.setOnItemSelectedListener(spinnerListener);
                 break;
 
             case 1:

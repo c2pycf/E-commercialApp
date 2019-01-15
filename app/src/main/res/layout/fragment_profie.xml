@@ -4,6 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/progress_layout_pro">
+
+
+    <ProgressBar
+        android:id="@+id/simpleProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="@string/progress_loading"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    </LinearLayout>
+
+
     <ImageView
         android:layout_width="96dp"
         android:layout_height="96dp"
@@ -82,6 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/update_bt"
+        android:id="@+id/bt_update_pro"
         android:onClick="onUpdateClicked"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
@@ -90,6 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reset_bt"
+            android:id="@+id/bt_reset_pro"
             android:onClick="onResetClicked"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"/>

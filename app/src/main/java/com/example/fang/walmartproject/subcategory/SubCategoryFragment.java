@@ -31,8 +31,6 @@ public class SubCategoryFragment extends Fragment implements SubCategoryContract
 
     static private String TAG = SubCategoryFragment.class.getSimpleName();
     public SubCategoryFragment() {
-        volley = AppController.getInstance();
-        mShopPresenter = new SubCategoryPresenter(this,cid);
     }
 
     @Nullable
@@ -47,6 +45,8 @@ public class SubCategoryFragment extends Fragment implements SubCategoryContract
         categoryView.setLayoutManager(manager);
         categoryView.setItemAnimator(new DefaultItemAnimator());
         getActivity().setTitle("SubCategory");
+        volley = AppController.getInstance();
+        mShopPresenter = new SubCategoryPresenter(this,cid);
 
         return view;
     }

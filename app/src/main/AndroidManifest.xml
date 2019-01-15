@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fang.walmartproject">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AppController"
@@ -23,12 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"></activity>
+        <activity android:name=".login.LoginActivity" />
         <activity
             android:name=".login.ForgetPasswordActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".login.RegisterActivity"></activity>
-        <activity android:name=".cart.ShoppingCartActivity"></activity>
+        <activity android:name=".login.RegisterActivity" />
+        <activity android:name=".cart.ShoppingCartActivity" />
+        <activity android:name=".resetPassword.ResetPasswordActivity"></activity>
     </application>
 
 </manifest>

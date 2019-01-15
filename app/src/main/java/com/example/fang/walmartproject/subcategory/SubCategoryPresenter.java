@@ -10,6 +10,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.CategoryItem;
 import com.example.fang.walmartproject.data.SubCategoryItem;
+import com.example.fang.walmartproject.data.source.UserDataSource;
+import com.example.fang.walmartproject.data.source.UserRepository;
 import com.example.fang.walmartproject.homePage.HomepageFragmentPresenter;
 
 import org.json.JSONArray;
@@ -25,17 +27,25 @@ public class SubCategoryPresenter implements SubCategoryContract.ShopPresenter{
     SubCategoryContract.ShopView mView;
     AppController volley;
     String cid;
+    UserDataSource reporsitory;
     static private final String TAG = SubCategoryPresenter.class.getSimpleName();
 
     public SubCategoryPresenter(SubCategoryFragment context, String cid) {
         this.mView = context;
         volley = AppController.getInstance();
         this.cid = cid;
+        reporsitory = new UserRepository(context.getContext());
     }
 
     @Override
     public void getCategoryList() {
-        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_sub_category.php?Id=107&api_key=362c84de326feb551cf0614d0d78aa74&user_id=1525";
+        String api = "3af40bba96cf53da337b880bade47479";
+        String id = "1525";
+        if(reporsitory.getUser()!=null) {
+            api = reporsitory.getUser().getUserAppApiKey();
+            id = reporsitory.getUser().getUserId();
+        }
+        String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_sub_category.php?Id="+cid+"&api_key="+api+"&user_id="+id;
         final List<SubCategoryItem> itemList= new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

@@ -12,22 +12,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
+import com.example.fang.walmartproject.data.UserImformation;
 import com.example.fang.walmartproject.login.LoginActivity;
+import com.example.fang.walmartproject.resetPassword.ResetPasswordActivity;
 
 
 public class ProfileFragment extends Fragment implements ProfileContract.ProfileView {
     AppController volley;
     EditText fnameEditText,lnameEditText,addressEditText,emailEditText,phoneEditText;
-    LinearLayout profileContent;
-    Button signInButton;
+    LinearLayout profileContent,progressLayout;
+    Button signInButton, updateButton, resetPassword;
     ProfilePresenter mProfilePresenter;
     static String TAG = ProfileFragment.class.getSimpleName();
 
     public ProfileFragment() {
-        mProfilePresenter = new ProfilePresenter(this);
+
     }
 
     @Nullable
@@ -43,6 +46,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.Profile
         phoneEditText = view.findViewById(R.id.et_mobile_pro);
         profileContent = view.findViewById(R.id.profile_content);
         signInButton = view.findViewById(R.id.bt_login_pro);
+        updateButton = view.findViewById(R.id.bt_update_pro);
+        resetPassword =view.findViewById(R.id.bt_reset_pro);
+        mProfilePresenter = new ProfilePresenter(this);
+        progressLayout = view.findViewById(R.id.progress_layout_pro);
 
         return view;
     }
@@ -52,6 +59,27 @@ public class ProfileFragment extends Fragment implements ProfileContract.Profile
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Profile");
         Log.d(TAG,"resume "+volley.getSignFlag());
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updating();
+            }
+        });
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProfilePresenter.onResetHandled();
+            }
+        });
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProfilePresenter.onSignInHandled();
+            }
+        });
+
         if(volley.getSignFlag()==1){
             //getdata
             Log.d(TAG,"showing");
@@ -62,20 +90,48 @@ public class ProfileFragment extends Fragment implements ProfileContract.Profile
         else {
             profileContent.setVisibility(View.GONE);
             signInButton.setVisibility(View.VISIBLE);
-            signInButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mProfilePresenter.onSignInHandled();
-                }
-            });
 
         }
 
     }
 
+    private void updating() {
+
+        progressLayout.setVisibility(View.VISIBLE);
+
+        if(fnameEditText.getText()!=null&&
+                lnameEditText.getText()!=null&&
+                emailEditText.getText()!=null&&
+                phoneEditText.getText()!=null&&
+                addressEditText!=null) {
+            String fname = fnameEditText.getText().toString();
+            String lname = lnameEditText.getText().toString();
+            String email = emailEditText.getText().toString();
+            String phone = phoneEditText.getText().toString();
+            String address = addressEditText.getText().toString();
+            mProfilePresenter.onUpdateHandled(fname, lname,email,phone,address);
+        }
+        else {
+            showToast("Please fill all up..");
+        }
+        progressLayout.setVisibility(View.GONE);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG,"resume");
+        if(volley.getSignFlag()==1){
+            //getdata
+            Log.d(TAG,"showing");
+            profileContent.setVisibility(View.VISIBLE);
+            signInButton.setVisibility(View.GONE);
+            mProfilePresenter.setText();
+        }
+        else {
+            profileContent.setVisibility(View.GONE);
+            signInButton.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -85,5 +141,26 @@ public class ProfileFragment extends Fragment implements ProfileContract.Profile
         getActivity().startActivity(intent);
 
     }
+
+    @Override
+    public void showTexts(UserImformation user) {
+        fnameEditText.setText(user.getFirstName());
+        lnameEditText.setText(user.getLastName());
+        emailEditText.setText(user.getEmail());
+        phoneEditText.setText(user.getMobile());
+        addressEditText.setText(user.getAddress());
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showResetPasswordPage() {
+        Intent intent = new Intent(getActivity(),ResetPasswordActivity.class);
+        startActivity(intent);
+    }
+
 
 }

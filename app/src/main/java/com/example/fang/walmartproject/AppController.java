@@ -75,4 +75,6 @@ public class AppController extends Application {
     public void setSignFlag(){
         SIGN_FLAG = 1;
     }
+
+    public void unSetSignFlag(){ SIGN_FLAG = 0;}
 }

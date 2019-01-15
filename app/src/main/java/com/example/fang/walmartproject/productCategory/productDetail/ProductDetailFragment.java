@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.fang.walmartproject.R;
@@ -20,6 +22,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     Product mProduct;
     RecyclerView recyclerView;
     ProductDetailContract.DetailPresenter mPresenter;
+    static private final String TAG = ProductDetailFragment.class.getSimpleName();
 
     public ProductDetailFragment() {
     }
@@ -35,10 +38,22 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         String discription = bundle.getString("discription");
         String image = bundle.getString("pImage");
         mProduct = new Product(id,pname,quantity,prize,discription,image);
-        ProductDetailAdapter adapter = new ProductDetailAdapter(mProduct, new View.OnClickListener() {
+        final ProductDetailAdapter adapter = new ProductDetailAdapter(mProduct, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProduct.setUserAmount(1);
                 mPresenter.onAddCartHandled(mProduct);
+            }
+        }, getContext(), new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG,"User select amount is " + (position+1));
+                mProduct.setUserAmount(position+1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
         recyclerView.setAdapter(adapter);

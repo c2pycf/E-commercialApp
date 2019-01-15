@@ -10,6 +10,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.UserImformation;
+import com.example.fang.walmartproject.data.source.UserDataSource;
+import com.example.fang.walmartproject.data.source.UserRepository;
 import com.example.fang.walmartproject.network.GetDataService;
 import com.example.fang.walmartproject.network.RetrofitClientInstance;
 
@@ -31,6 +33,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     LoginContract.LoginView mView;
     Retrofit mRetrofit;
     AppController volley;
+    UserDataSource dataSource;
 
     static final String TAG = "LoginPresenter";
 
@@ -39,11 +42,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         mRetrofit = RetrofitClientInstance.getInstance();
 
         volley = AppController.getInstance();
+        dataSource = new UserRepository(activity);
     }
 
     @Override
     public void onLoginHandled(final String phone, final String password) {
-        String url = "http://rjtmobile.com/aamir/e-commerce/android-app/shop_login.php?";
+        String url = "http://rjtmobile.com/aamir/e-commerce/android-app/shop_login.php?mobile="+phone+"&password="+password;
         //Post url
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -60,6 +64,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                         String email = user.getString("email");
                         String mobile = user.getString("mobile");
                         String userApiKey = user.getString("appapikey ");
+                        Log.d(TAG,user.toString() );
                         UserImformation userImformation = new UserImformation(message,userId,fname,lname,email,mobile,userApiKey);
                         userInformationList.add(userImformation);
                     }
@@ -67,9 +72,11 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                     mView.showToast(userInformationList.get(0).getLoginMessage());
                     saveUser(userInformationList.get(0));
                     volley.setSignFlag();
+                    mView.finishSignIn();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    mView.showToast("Unable to login\nPlease retry..");
                 }
 
             }
@@ -78,19 +85,10 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG,error.getMessage());
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("mobile",phone);
-                params.put("password",password);
-                return params;
-            }
-        };
+        });
 
        volley.addToRequestQueue(stringRequest,"SignIn");
 
-       mView.finishSignIn();
 
 
 
@@ -125,7 +123,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
     private void saveUser(UserImformation newUser) {
-
+        dataSource.saveUser(newUser);
     }
 
     @Override

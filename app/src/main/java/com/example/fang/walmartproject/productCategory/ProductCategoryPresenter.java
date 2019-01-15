@@ -8,6 +8,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.Product;
+import com.example.fang.walmartproject.data.source.UserDataSource;
+import com.example.fang.walmartproject.data.source.UserRepository;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,17 +21,27 @@ import java.util.List;
 public class ProductCategoryPresenter implements ProductCategoryContract.ProductListPresenter {
     ProductCategoryContract.ProductListView mView;
     AppController volley;
+    UserDataSource reporsitory;
 
     static final String TAG = ProductCategoryPresenter.class.getSimpleName();
 
     public ProductCategoryPresenter(ProductCategoryFragment context) {
         this.mView = context;
         this.volley = AppController.getInstance();
+        reporsitory = new UserRepository(context.getContext());
     }
 
     @Override
     public void getProducts(String cid, String scid) {
-        String url ="http://rjtmobile.com/ansari/shopingcart/androidapp/product_details.php?cid=107&scid=205&api_key=362c84de326feb551cf0614d0d78aa74&user_id=1525";
+        String api = "3af40bba96cf53da337b880bade47479";
+        String id = "1525";
+        if(reporsitory.getUser()!=null) {
+            api = reporsitory.getUser().getUserAppApiKey();
+            id = reporsitory.getUser().getUserId();
+
+
+        }
+        String url ="http://rjtmobile.com/ansari/shopingcart/androidapp/product_details.php?cid="+cid+"&scid="+scid+"&api_key="+api+"&user_id="+id;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -39,4 +39,11 @@
     <string name="user_reviews"><b>Product Reviews</b></string>
     <string name="product_total">Total</string>
     <string name="bt_cart">Shopping cart</string>
+    <string name="nav_menu_sign_out">Sign out</string>
+    <string name="progress_loading">Loading...</string>
+    <string name="old_password_re">Enter old password</string>
+    <string name="new_password_re">Enter new passsword</string>
+    <string name="customer">Custermer1</string>
+    <string name="item_remove_cart"><u>Remove</u></string>
+    <string name="item_save_cart"><u>Save for later</u></string>
 </resources>

@@ -15,6 +15,9 @@ public class UserImformation {
     @SerializedName("lastname")
     String lastName;
 
+    @SerializedName("address")
+    String address;
+
     @SerializedName("email")
     String email;
     @SerializedName("mobile")
@@ -30,6 +33,14 @@ public class UserImformation {
         this.email = email;
         this.mobile = mobile;
         this.userAppApiKey = userAppApiKey;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getLoginMessage() {

@@ -1,4 +1,5 @@
 package com.example.fang.walmartproject.homePage;
+import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.fang.walmartproject.cart.ShoppingCartActivity;
 import com.example.fang.walmartproject.login.LoginActivity;
@@ -23,6 +25,7 @@ public class HomePageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageContract.HomeView {
 
     HomePagePresenter homePagePresenter;
+    NavigationView navigationView;
 
     static String TAG = HomePageActivity.class.getSimpleName();
 
@@ -49,13 +52,38 @@ public class HomePageActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        checkSignIn(navigationView);
         homePagePresenter = new HomePagePresenter(this);
 
         this.showShopList();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"home restart");
+        checkSignIn(navigationView);
+    }
+
+    private void checkSignIn(NavigationView navigationView) {
+        int sign = AppController.getInstance().getSignFlag();
+        Log.d(TAG,"sign flg" + sign);
+        if(sign == 1 ){
+            navigationView.getMenu().findItem(R.id.nav_sign).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_sign_out).setVisible(true);
+        }
+        else if(sign == 0){
+            navigationView.getMenu().getItem(3).setVisible(true);
+            navigationView.getMenu().getItem(4).setVisible(false);
+        }
     }
 
     @Override
@@ -93,6 +121,7 @@ public class HomePageActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -109,7 +138,9 @@ public class HomePageActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_sign) {
             homePagePresenter.onSignInHandled();
-
+        }
+        else if(id == R.id.nav_sign_out){
+            homePagePresenter.onSignOutHandled();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -141,6 +172,13 @@ public class HomePageActivity extends AppCompatActivity
     public void showCart() {
         Intent intent = new Intent(HomePageActivity.this,ShoppingCartActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void signOut() {
+        AppController.getInstance().unSetSignFlag();
+        Toast.makeText(this,"Log out!",Toast.LENGTH_SHORT).show();
+        checkSignIn(navigationView);
     }
 
 
