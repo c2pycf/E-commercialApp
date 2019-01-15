@@ -17,7 +17,8 @@
             android:textSize="20sp"
             android:id="@+id/tv_product__title_detail"
             android:padding="@dimen/text_margin"
-            android:text="@string/login_button_sign"/>
+            android:text="@string/login_button_sign"
+            android:background="@drawable/layout_shape"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -26,6 +27,12 @@
             android:padding="5dp"
             android:text="@string/user_reviews"
             android:textSize="12sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/layout_shape">
 
 
             <com.android.volley.toolbox.NetworkImageView
@@ -45,7 +52,10 @@
                     android:id="@+id/tv_product_prise_detail"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

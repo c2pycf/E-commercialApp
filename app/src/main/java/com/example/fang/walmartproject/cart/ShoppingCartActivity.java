@@ -37,7 +37,7 @@ public class ShoppingCartActivity extends AppCompatActivity implements ShoppingC
 
     @Override
     public void showRecyvleView(Cart cart, int totalPrise) {
-        CartAdapter adapter = new CartAdapter(cart);
+        CartAdapter adapter = new CartAdapter(cart,this);
         recyclerView.setAdapter(adapter);
 
     }

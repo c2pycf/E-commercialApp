@@ -1,4 +1,4 @@
-package com.example.fang.walmartproject.data.source.local;
+package com.example.fang.walmartproject.data.source.local.UserSharePreference;
 
 import android.content.Context;
 import android.content.SharedPreferences;

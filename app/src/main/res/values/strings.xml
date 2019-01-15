@@ -46,4 +46,11 @@
     <string name="customer">Custermer1</string>
     <string name="item_remove_cart"><u>Remove</u></string>
     <string name="item_save_cart"><u>Save for later</u></string>
+    <string name="subtotal_cart">Subtotal</string>
+    <string name="est_total_cart">Est. total</string>
+    <string name="bt_process_to_checkout">Process to check out</string>
+    <string name="no_cart_item">Your Cart is empty!</string>
+    <string name="tax_cart">Est. tax</string>
+    <string name="shipping_fee_cart">Est. shipping fee</string>
+    <string name="item_edit_cart"><u>Edit</u></string>
 </resources>

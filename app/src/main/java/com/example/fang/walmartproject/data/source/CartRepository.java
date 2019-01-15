@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.Product;
-import com.example.fang.walmartproject.data.source.local.CartLocalDataSource;
-
-import java.util.List;
+import com.example.fang.walmartproject.data.source.local.cartDb.CartLocalDataSource;
 
 public class CartRepository implements CartDataSource {
     CartLocalDataSource localDataSource;
@@ -33,7 +31,7 @@ public class CartRepository implements CartDataSource {
 
     @Override
     public void deleteProduct(String id) {
-
+        localDataSource.deleteProduct(id);
     }
 
     @Override

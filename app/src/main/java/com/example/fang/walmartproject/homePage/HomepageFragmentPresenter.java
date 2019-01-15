@@ -35,11 +35,12 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
 
     @Override
     public void getCategoryList() {
-        String api = "3af40bba96cf53da337b880bade47479";
+        String api = "fbdba5e879a51ae7436280d18647e9fe";
         String id = "1525";
         if(reprository.getUser()!=null) {
             api = reprository.getUser().getUserAppApiKey();
             id = reprository.getUser().getUserId();
+            Log.d(TAG,"api= " + api + " id=" + id);
 
 
         }

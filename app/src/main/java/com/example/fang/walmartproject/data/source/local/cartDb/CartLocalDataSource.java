@@ -1,4 +1,4 @@
-package com.example.fang.walmartproject.data.source.local;
+package com.example.fang.walmartproject.data.source.local.cartDb;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,8 +9,6 @@ import android.util.Log;
 import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.data.source.CartDataSource;
-
-import java.util.List;
 
 public class CartLocalDataSource implements CartDataSource {
     CartDbHelper dbHelper;
@@ -54,21 +52,22 @@ public class CartLocalDataSource implements CartDataSource {
         Cursor cursor = database.rawQuery(query,null);
         cursor.moveToFirst();
         Cart cart = new Cart();
-        do {
-            String id = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_ID));
-            String pname = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_TITLE));
-            String quantity = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_QUANTITY));
-            String prise = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_PRISE));
-            String desc = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_DESCRIPTION));
-            String imageUrl = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_IMAGEURL));
-            String amount = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_AMOUNT));
-            Product newProduct = new Product(id,pname,quantity,prise,desc,imageUrl);
-            newProduct.setUserAmount(Integer.parseInt(amount));
-            cart.addProduct(newProduct);
-            Log.d(TAG,"prise is " + cart.getTotalPrize());
+        if(cursor.getCount()>0) {
+            do {
+                String id = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_ID));
+                String pname = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_TITLE));
+                String quantity = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_QUANTITY));
+                String prise = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_PRISE));
+                String desc = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_DESCRIPTION));
+                String imageUrl = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_IMAGEURL));
+                String amount = cursor.getString(cursor.getColumnIndex(CartsPersistenceContract.CartEntry.COLUMN_NAME_AMOUNT));
+                Product newProduct = new Product(id, pname, quantity, prise, desc, imageUrl);
+                newProduct.setUserAmount(Integer.parseInt(amount));
+                cart.addProduct(newProduct);
+                Log.d(TAG, "prise is " + cart.getTotalPrize());
 
-        }while (cursor.moveToNext());
-
+            } while (cursor.moveToNext());
+        }
 
         cursor.close();
 
@@ -80,12 +79,29 @@ public class CartLocalDataSource implements CartDataSource {
 
     @Override
     public void clearCart() {
+        database = dbHelper.getWritableDatabase();
+        String query = "Select * from " + CartsPersistenceContract.CartEntry.TABLE_NAME;
+        Cursor cursor = database.rawQuery(query,null);
+        cursor.moveToFirst();
+        if(cursor.getCount()>0) {
+            do {
+                //delete
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+
+        database.close();
 
     }
 
     @Override
     public void deleteProduct(String id) {
+        database = dbHelper.getWritableDatabase();
 
+        database.delete(CartsPersistenceContract.CartEntry.TABLE_NAME,CartsPersistenceContract.CartEntry.COLUMN_NAME_ID+"="+id,null );
+
+        database.close();
     }
 
     @Override
@@ -93,7 +109,6 @@ public class CartLocalDataSource implements CartDataSource {
         String id = product.getId();
         database = dbHelper.getWritableDatabase();
 
-        database = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(CartsPersistenceContract.CartEntry.COLUMN_NAME_ID, product.getId());
         values.put(CartsPersistenceContract.CartEntry.COLUMN_NAME_TITLE, product.getPname());

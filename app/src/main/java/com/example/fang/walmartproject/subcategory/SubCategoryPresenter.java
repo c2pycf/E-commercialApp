@@ -39,11 +39,13 @@ public class SubCategoryPresenter implements SubCategoryContract.ShopPresenter{
 
     @Override
     public void getCategoryList() {
-        String api = "3af40bba96cf53da337b880bade47479";
+        String api = "fbdba5e879a51ae7436280d18647e9fe";
         String id = "1525";
         if(reporsitory.getUser()!=null) {
+
             api = reporsitory.getUser().getUserAppApiKey();
             id = reporsitory.getUser().getUserId();
+            Log.d(TAG,"api= " + api + " id=" + id);
         }
         String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_sub_category.php?Id="+cid+"&api_key="+api+"&user_id="+id;
         final List<SubCategoryItem> itemList= new ArrayList<>();

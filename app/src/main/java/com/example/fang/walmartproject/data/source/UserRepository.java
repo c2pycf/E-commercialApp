@@ -3,7 +3,7 @@ package com.example.fang.walmartproject.data.source;
 import android.content.Context;
 
 import com.example.fang.walmartproject.data.UserImformation;
-import com.example.fang.walmartproject.data.source.local.UserLocalDataSource;
+import com.example.fang.walmartproject.data.source.local.UserSharePreference.UserLocalDataSource;
 
 public class UserRepository implements UserDataSource{
 

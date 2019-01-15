@@ -113,6 +113,14 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/item_save_cart"/>
 
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:text="@string/item_edit_cart"
+                android:layout_marginStart="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/item_edit_cart"/>
+
         </LinearLayout>
 
 
