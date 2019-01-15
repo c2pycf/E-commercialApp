@@ -23,7 +23,7 @@ public class CartRepository implements CartDataSource {
 
     @Override
     public Cart getCarts() {
-        return null;
+        return localDataSource.getCarts();
     }
 
     @Override

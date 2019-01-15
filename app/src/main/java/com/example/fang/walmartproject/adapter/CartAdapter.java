@@ -19,6 +19,7 @@ public class CartAdapter extends RecyclerView.Adapter{
     Cart cart;
     AppController volley;
 
+
     public CartAdapter(Cart cart) {
         this.cart = cart;
         volley = AppController.getInstance();
@@ -40,6 +41,7 @@ public class CartAdapter extends RecyclerView.Adapter{
         ImageLoader imageLoader = volley.getImageLoader();
         itemViewHolder.imageView.setImageUrl(product.getImage(),imageLoader);
         itemViewHolder.totalTextView.setText(product.getQuantity());
+        itemViewHolder.amount.setSelection(product.getUserAmount()-1);
 
     }
 

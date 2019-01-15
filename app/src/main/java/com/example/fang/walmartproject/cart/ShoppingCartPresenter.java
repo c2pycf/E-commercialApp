@@ -1,5 +1,7 @@
 package com.example.fang.walmartproject.cart;
 
+import android.util.Log;
+
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.source.CartDataSource;
@@ -9,6 +11,7 @@ public class ShoppingCartPresenter implements ShoppingCartContracter.CartPresent
     ShoppingCartContracter.CartView mView;
     AppController volley;
     CartDataSource repository;
+    static final private String TAG = ShoppingCartPresenter.class.getSimpleName();
 
     public ShoppingCartPresenter(ShoppingCartActivity activity) {
         this.mView = activity;
@@ -20,6 +23,8 @@ public class ShoppingCartPresenter implements ShoppingCartContracter.CartPresent
     public void getCartData() {
         Cart cart = repository.getCarts();
         int totalPrise = cart.getTotalPrize();
+        Log.d(TAG,"size "+ cart.getCartSize());
+
         mView.showRecyvleView(cart, totalPrise);
 
     }
