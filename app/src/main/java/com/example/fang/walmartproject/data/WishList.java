@@ -5,6 +5,7 @@ import java.util.List;
 
 public class WishList {
     List<Product> mCart;
+    String userId;
 
     public WishList() {
         this.mCart = new ArrayList<>();

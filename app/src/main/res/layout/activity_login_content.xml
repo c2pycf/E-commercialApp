@@ -23,6 +23,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:inputType="textPassword"
         android:hint="@string/hint_password_login" />
 
     <TextView
@@ -50,6 +51,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/bt_login"
         android:text="@string/login_button_sign"
-        android:onClick="onLoginClicked"/>
+        android:onClick="onLoginClicked"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/activity_horizontal_margin"/>
 
 </LinearLayout>

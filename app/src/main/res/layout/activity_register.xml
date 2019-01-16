@@ -7,6 +7,18 @@
     tools:context=".login.RegisterActivity"
     android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/registration_toolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -99,9 +111,5 @@
         android:text="@string/continue_bt"
         android:layout_gravity="center_horizontal"/>
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:layout_collapseMode="pin" />
 
 </LinearLayout>

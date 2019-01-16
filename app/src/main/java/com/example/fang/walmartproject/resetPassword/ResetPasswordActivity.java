@@ -2,8 +2,10 @@ package com.example.fang.walmartproject.resetPassword;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+
 
 import com.example.fang.walmartproject.R;
 
@@ -11,12 +13,16 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
 
     private ResetPasswordContract.ResetPresenter mPresenter;
     private EditText oldPasswordEditText,newPasswordEditText;
-
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+        toolbar = findViewById(R.id.reset_pass_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Sign up");
         mPresenter = new ResetPasswordPresenter(this);
         oldPasswordEditText = findViewById(R.id.et_old_password_reset);
         newPasswordEditText = findViewById(R.id.et_new_password_reset);

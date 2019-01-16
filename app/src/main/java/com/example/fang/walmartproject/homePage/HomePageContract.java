@@ -16,6 +16,7 @@ public interface HomePageContract {
 
         void signOut();
 
+        void showWishList();
 
 
     }
@@ -32,6 +33,8 @@ public interface HomePageContract {
         void onCartOpen();
 
         void onSignOutHandled();
+
+        void onWishListOpen();
 
     }
 

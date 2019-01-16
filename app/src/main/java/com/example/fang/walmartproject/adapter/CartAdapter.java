@@ -23,8 +23,6 @@ import com.example.fang.walmartproject.cart.ShoppingCartContracter;
 import com.example.fang.walmartproject.cart.ShoppingCartPresenter;
 import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.Product;
-
-import java.net.Inet4Address;
 import java.text.NumberFormat;
 
 public class CartAdapter extends RecyclerView.Adapter{
@@ -37,10 +35,10 @@ public class CartAdapter extends RecyclerView.Adapter{
 
 
 
-    public CartAdapter(Cart cart, ShoppingCartActivity activity) {
+    public CartAdapter(Cart cart, ShoppingCartActivity activity, ShoppingCartContracter.CartPresenter presenter) {
         this.cart = cart;
         volley = AppController.getInstance();
-        mPresenter = new ShoppingCartPresenter(activity);
+        mPresenter = presenter;
         this.activity =activity;
 
     }
@@ -65,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter{
         Log.d(TAG,"type" + type);
         if(type == (cart.getCartSize())){
             CartCheckOutViewHolder priseViewHolder1 = (CartCheckOutViewHolder) viewHolder;
-            int totalPrise = cart.getTotalPrize();
+            float totalPrise = cart.getTotalPrize();
             float tax = (float) (totalPrise*0.08);
             float estTotalPrise = totalPrise + tax;
                 priseViewHolder1.subTotalTextView.setText(format.format(totalPrise));
@@ -79,6 +77,12 @@ public class CartAdapter extends RecyclerView.Adapter{
             else {
                 priseViewHolder1.proceedButton.setVisibility(View.VISIBLE);
                 priseViewHolder1.emptyMsgTextView.setVisibility(View.GONE);
+                priseViewHolder1.proceedButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPresenter.processToCheckOut();
+                    }
+                });
             }
         }
         else {
@@ -102,6 +106,8 @@ public class CartAdapter extends RecyclerView.Adapter{
                 @Override
                 public void onClick(View v) {
                     mPresenter.deleteProduct(product.getId());
+
+
                 }
             });
             itemViewHolder.editTextView.setOnClickListener(new View.OnClickListener() {

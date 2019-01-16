@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.fang.walmartproject.cart.ShoppingCartActivity;
 import com.example.fang.walmartproject.login.LoginActivity;
 import com.example.fang.walmartproject.profile.ProfileFragment;
+import com.example.fang.walmartproject.wishList.WishListFragment;
 
 public class HomePageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomePageContract.HomeView {
@@ -81,8 +82,8 @@ public class HomePageActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_sign_out).setVisible(true);
         }
         else if(sign == 0){
-            navigationView.getMenu().getItem(3).setVisible(true);
-            navigationView.getMenu().getItem(4).setVisible(false);
+            navigationView.getMenu().getItem(4).setVisible(true);
+            navigationView.getMenu().getItem(5).setVisible(false);
         }
     }
 
@@ -136,6 +137,9 @@ public class HomePageActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_my_order) {
 
+        } else if (id == R.id.nav_wish){
+            homePagePresenter.onWishListOpen();
+
         } else if (id == R.id.nav_sign) {
             homePagePresenter.onSignInHandled();
         }
@@ -179,6 +183,12 @@ public class HomePageActivity extends AppCompatActivity
         AppController.getInstance().unSetSignFlag();
         Toast.makeText(this,"Log out!",Toast.LENGTH_SHORT).show();
         checkSignIn(navigationView);
+    }
+
+    @Override
+    public void showWishList() {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.home_page_content,new WishListFragment()).addToBackStack(null).commit();
     }
 
 

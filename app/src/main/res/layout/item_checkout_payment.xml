@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<android.support.v7.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_checkout_address_card"
+    app:cardUseCompatPadding="true"
+    android:elevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:padding="@dimen/text_margin"
+            android:text="@string/checkout_address_title"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/ed_address_checkout"
+            android:hint="@string/checkout_address"
+            android:inputType="textPostalAddress"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/ed_bill_checkout"
+            android:hint="@string/checkout_bill"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    android:elevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="@dimen/text_margin"
+                android:text="@string/payment_infor"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/et_card_number"
+                android:hint="@string/card_number"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:inputType="number"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/et_card_name"
+                    android:hint="@string/card_name"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:inputType="text"/>
+
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/card_month"
+                    android:hint="@string/card_month"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:inputType="date"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="/"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/card_year"
+                    android:hint="@string/card_year"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:inputType="date"
+                    />
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/card_cvc"
+                    android:hint="@string/card_cvv"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:inputType="number"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/bt_order"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:id="@+id/bt_place"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

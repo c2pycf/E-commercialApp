@@ -1,4 +1,14 @@
 package com.example.fang.walmartproject.wishList;
 
-public class WishListContract {
+import com.example.fang.walmartproject.data.WishList;
+
+public interface WishListContract {
+    interface WishListView {
+        void showWishList(WishList wishList);
+    }
+
+    interface WishListPresenter{
+        void getWishList();
+    }
+
 }

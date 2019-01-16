@@ -44,4 +44,9 @@ public class HomePagePresenter implements HomePageContract.HomePresenter {
     public void onSignOutHandled() {
         mView.signOut();
     }
+
+    @Override
+    public void onWishListOpen() {
+        mView.showWishList();
+    }
 }

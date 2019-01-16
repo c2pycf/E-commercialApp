@@ -53,4 +53,27 @@
     <string name="tax_cart">Est. tax</string>
     <string name="shipping_fee_cart">Est. shipping fee</string>
     <string name="item_edit_cart"><u>Edit</u></string>
+    <string name="wish_list">Save for Later</string>
+    <string name="item_add_wish">Add to cart</string>
+    <string name="no_wish_list_item">You have not save any items</string>
+    <string name="coupon_hints">Enter coupon code</string>
+    <string name="coupon_apply">Apply</string>
+    <string name="checkout_address">Enter your shpping address</string>
+    <string name="checkout_bill">Enter your billing address</string>
+    <string name="checkout_address_title">Address Information</string>
+    <string name="payment_infor">Payment Information</string>
+    <string name="card_number">Enter card number</string>
+    <string name="card_name">Name</string>
+    <string name="card_date">mmyy</string>
+    <string name="card_cvv">cvc</string>
+    <string name="bt_order">Place order</string>
+    <string name="card_month">mm</string>
+    <string name="card_year">yy</string>
+    <string name="order_order_id">Order Id:</string>
+    <string name="order_order_status">Order Status</string>
+    <string name="order_order_name">Name</string>
+    <string name="order_order_address">Address</string>
+    <string name="order_order_bill">Billing Address</string>
+    <string name="order_order_total">Total prise</string>
+    <string name="order_order_paid">Paid Prise</string>
 </resources>

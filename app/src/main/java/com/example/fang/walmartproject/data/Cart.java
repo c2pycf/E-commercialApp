@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cart {
     List<Product> mCart;
-    int totalPrize;
+   float totalPrize;
 
     public Cart() {
         this.mCart = new ArrayList<>();
@@ -21,18 +21,19 @@ public class Cart {
     public void addProduct(Product product){
         mCart.add(product);
         totalPrize = totalPrize
-                + (Integer.parseInt(product.getPrize()))* (product.getUserAmount());
+                + (Float.parseFloat(product.getPrize()))* (product.getUserAmount());
+
     }
 
     public Product getProduct(int i){
         return mCart.get(i);
     }
 
-    public int getTotalPrize() {
+    public float getTotalPrize() {
         return totalPrize;
     }
 
-    public void setTotalPrize(int totalPrize) {
+    public void setTotalPrize(float totalPrize) {
         this.totalPrize = totalPrize;
     }
 

@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import android.support.design.widget.CollapsingToolbarLayout;
 
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ import android.widget.Toolbar;
 
 
 import com.example.fang.walmartproject.R;
-import com.example.fang.walmartproject.homePage.HomePageActivity;
+
 
 public class LoginActivity extends Activity implements LoginContract.LoginView{
     AppBarLayout appBarLayout;
@@ -45,7 +46,7 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
 
         setActionBar(mToolbar);
 
-       
+
 
         loginEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +89,7 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
     @Override
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        //Snackbar.make(,message,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

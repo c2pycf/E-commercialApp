@@ -29,7 +29,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".cart.ShoppingCartActivity" />
-        <activity android:name=".resetPassword.ResetPasswordActivity"></activity>
+        <activity android:name=".resetPassword.ResetPasswordActivity" />
+        <activity android:name=".checkOut.CheckOutActivity"></activity>
     </application>
 
 </manifest>

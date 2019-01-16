@@ -5,7 +5,9 @@ import com.example.fang.walmartproject.data.Product;
 
 public interface ShoppingCartContracter {
     interface CartView{
-        void showRecyvleView(Cart cart, int totalPrise);
+        void showRecyvleView(Cart cart, float totalPrise);
+
+        void showCheckOut();
     }
 
     interface CartPresenter{
@@ -16,5 +18,7 @@ public interface ShoppingCartContracter {
         void updateProduct(Product product);
 
         void saveLater(Product product);
+
+        void processToCheckOut();
     }
 }
