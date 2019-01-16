@@ -31,6 +31,9 @@ public class OrderAdapter extends RecyclerView.Adapter{
 
         Order order = orderList.getOrder(i);
         OrderViewHolder viewHolder1 = (OrderViewHolder) viewHolder;
+        if(i==0){
+            ((OrderViewHolder) viewHolder).title.setVisibility(View.VISIBLE);
+        }
         viewHolder1.orderId.setText(order.getOrderId());
         viewHolder1.orderStatus.setText(order.getOrderStatus());
         viewHolder1.name.setText(order.getName());
@@ -51,7 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter{
     }
 
     public class OrderViewHolder extends RecyclerView.ViewHolder{
-        TextView orderId, orderStatus,name,bill,address,itemId,
+        TextView title, orderId, orderStatus,name,bill,address,itemId,
                 itemName,itemQuantity,totalPrise,paidPrise,date;
 
         public OrderViewHolder(@NonNull View itemView) {
@@ -67,6 +70,8 @@ public class OrderAdapter extends RecyclerView.Adapter{
             totalPrise= itemView.findViewById(R.id.order_order_total_prise);
             paidPrise= itemView.findViewById(R.id.order_order_paid);
             date= itemView.findViewById(R.id.order_order_date);
+            title = itemView.findViewById(R.id.order_title);
+
 
         }
     }
