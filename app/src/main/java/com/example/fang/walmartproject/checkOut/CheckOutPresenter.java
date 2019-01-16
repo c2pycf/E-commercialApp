@@ -99,8 +99,8 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
     @Override
     public void checkPayment(final String address, final String bill, String cardNum, String month, String year, String cvc) {
-        //simplify = new Simplify();
-        //simplify.setApiKey("sbpb_Mjk0NjYwYTEtYmM2YS00YTE0LWFhMDEtZjcyMGQ1YzIzOThj");
+//        simplify = new Simplify();
+//        simplify.setApiKey("sbpb_Mjk0NjYwYTEtYmM2YS00YTE0LWFhMDEtZjcyMGQ1YzIzOThj");
 //        Card card = new Card()
 //                .setNumber(cardNum)
 //                .setExpMonth(month)
