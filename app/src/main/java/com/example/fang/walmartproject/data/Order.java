@@ -1,5 +1,7 @@
 package com.example.fang.walmartproject.data;
 
+import java.util.List;
+
 public class Order {
     String orderId;
 
@@ -15,19 +17,13 @@ public class Order {
 
     String email;
 
-    String itemId;
-
-    String itemName;
-
-    String quantity;
-
-    String totalPrice;
-
-    String paid;
+    Float paid;
 
     String date;
 
-    public Order(String orderId, String orderStatus, String name, String bill, String address, String mobile, String email, String itemId, String itemName, String quantity, String totalPrice, String paid, String date) {
+    Cart productList;
+
+    public Order(String orderId, String orderStatus, String name, String bill, String address, String mobile, String email, float paid, String date, Cart cart) {
         this.orderId = orderId;
         this.orderStatus = orderStatus;
         this.name = name;
@@ -35,12 +31,9 @@ public class Order {
         this.address = address;
         this.mobile = mobile;
         this.email = email;
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.totalPrice = totalPrice;
         this.paid = paid;
         this.date = date;
+        this.productList = cart;
     }
 
     public String getOrderId() {
@@ -99,35 +92,12 @@ public class Order {
         this.email = email;
     }
 
-    public String getItemId() {
-        return itemId;
-    }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public String getPaid() {
+    public float getPaid() {
         return paid;
     }
 
-    public void setPaid(String paid) {
+    public void setPaid(float paid) {
         this.paid = paid;
     }
 
@@ -139,11 +109,11 @@ public class Order {
         this.date = date;
     }
 
-    public String getItemName() {
-        return itemName;
+    public Cart getProductList() {
+        return productList;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setProductList(Cart productList) {
+        this.productList = productList;
     }
 }

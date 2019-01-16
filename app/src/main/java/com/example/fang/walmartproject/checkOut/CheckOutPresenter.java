@@ -31,6 +31,7 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
     UserDataSource userRepository;
     Simplify simplify;
     float discuontRate = (float) 1.00;
+    static final String SIMPLIFY_API = "sbpb_OTZlNmE0ZDQtYTIzMC00NDQ4LWE0YTMtNzJmOGIwNGQ1Zjk3";
 
     static final String TAG = CheckOutPresenter.class.getSimpleName();
 
@@ -100,7 +101,7 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
     @Override
     public void checkPayment(final String address, final String bill, String cardNum, String month, String year, String cvc) {
 //        simplify = new Simplify();
-//        simplify.setApiKey("sbpb_Mjk0NjYwYTEtYmM2YS00YTE0LWFhMDEtZjcyMGQ1YzIzOThj");
+//        simplify.setApiKey(SIMPLIFY_API);
 //        Card card = new Card()
 //                .setNumber(cardNum)
 //                .setExpMonth(month)
@@ -132,25 +133,43 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
         String email = user.getEmail();
         String api_key = user.getUserAppApiKey();
 
-        Cart cart = cartRepository.getCarts();
+
+        final Cart cart = cartRepository.getCarts();
         int count = cart.getCartSize();
-        final OrderList orderList = new OrderList();
+
+        final float paid = cart.getTotalPrize()*discuontRate;
+
+        String url= "http://rjtmobile.com/aamir/e-commerce/android-app/orders.php?";
+        String item="";
+
 
         for(int i=0;i<count;i++) {
-
             Product product = cart.getProduct(i);
-            String productId =product.getId();
-            String pname = product.getPname();
-            int quantity = product.getUserAmount();
-            Float prise = Float.parseFloat(product.getPrize())*discuontRate;
-            String url = "http://rjtmobile.com/aamir/e-commerce/android-app/orders.php?&item_id="
-            +productId+"&item_names="+pname+"&item_quantity="+quantity+"&final_price="+prise
-                    +"&&api_key="+api_key+"&user_id="+userid+"&user_name="+name+"&billingadd="
+
+            item = item.concat("&item_id=");
+            item = item.concat(product.getId());
+            item = item.concat("&item_names=");
+            item = item.concat(product.getPname());
+            item = item.concat("&item_quantity=");
+            item = item.concat(Integer.toString(product.getUserAmount()));
+            item = item.concat("&final_price=");
+            float prise = Float.parseFloat(product.getPrize()) * discuontRate;
+            item = item.concat(Float.toString(prise));
+
+
+        }
+
+
+            url = url + item +"&&api_key="+api_key+"&user_id="+userid+"&user_name="+name+"&billingadd="
                     +bill+"&deliveryadd="+address+"&mobile="+mobile+"&email="+email;
+
+            Log.d(TAG,url);
+
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     try {
+                        OrderList orderList = new OrderList();
                         Log.d(TAG,"response" + response);
                         JSONObject orderConfirm = new JSONObject(response);
                         JSONArray orderArray = orderConfirm.getJSONArray("Order confirmed");
@@ -163,18 +182,14 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
                             String address = orderJSON.getString("deliveryadd");
                             String mobile = orderJSON.getString("mobile");
                             String email = orderJSON.getString("email");
-                            String itemId = orderJSON.getString("itemid");
-                            String itemName = orderJSON.getString("itemname");
-                            String itemQuantity = orderJSON.getString("itemquantity");
-                            String totalPrise = orderJSON.getString("totalprice");
-                            String paidPrise = orderJSON.getString("paidprice");
                             String date = orderJSON.getString("placedon");
 
                             Order newOrder = new Order(orderId,
-                                    orderStatus,name,bill,address,mobile,email,itemId,
-                                    itemName,itemQuantity,totalPrise,paidPrise,date);
+                                    orderStatus,name,bill,address,mobile,email,paid,date,cart);
                             orderList.addOrder(newOrder);
+
                         }
+                        mView.showOrderComfirmation(orderList);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -187,10 +202,8 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
                 }
             });
 
-            volley.addToRequestQueue(stringRequest,"place_order_"+ i);
+            volley.addToRequestQueue(stringRequest,"place_order");
 
-        }
 
-        mView.showOrderComfirmation(orderList);
     }
 }

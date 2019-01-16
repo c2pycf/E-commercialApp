@@ -77,4 +77,5 @@
     <string name="order_order_total">Total prise</string>
     <string name="order_order_paid">Paid Prise</string>
     <string name="order_title"><b>Your order has been places</b></string>
+    <string name="bt_detail">Order detail</string>
 </resources>
