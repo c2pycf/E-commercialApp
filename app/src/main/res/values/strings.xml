@@ -78,4 +78,8 @@
     <string name="order_order_paid">Paid Prise</string>
     <string name="order_title"><b>Your order has been places</b></string>
     <string name="bt_detail">Order detail</string>
+    <string name="order_complete_bt">Comtinue shopping</string>
+    <string name="bt_tracking">Tracking</string>
+    <string name="order_history_empty">You have no order!</string>
+    <string name="traking_id">Shipment Id</string>
 </resources>

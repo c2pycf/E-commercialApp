@@ -32,6 +32,7 @@ public class HomePagePresenter implements HomePageContract.HomePresenter {
 
     @Override
     public void onOrderHandled() {
+        mView.showOrderHistory();
 
     }
 

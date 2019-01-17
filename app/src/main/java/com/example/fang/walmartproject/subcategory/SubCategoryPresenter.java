@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.CategoryItem;
 import com.example.fang.walmartproject.data.SubCategoryItem;
+import com.example.fang.walmartproject.data.source.TopSeller;
 import com.example.fang.walmartproject.data.source.UserDataSource;
 import com.example.fang.walmartproject.data.source.UserRepository;
 import com.example.fang.walmartproject.homePage.HomepageFragmentPresenter;
@@ -95,5 +96,41 @@ public class SubCategoryPresenter implements SubCategoryContract.ShopPresenter{
     @Override
     public void onSubCategoryItemClicked(String cid, String scid) {
         mView.showProductList(cid,scid);
+    }
+
+    @Override
+    public void getTopSells() {
+        String url = "http://rjtmobile.com/aamir/e-commerce/android-app/shop_top_sellers.php?";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject sellers = new JSONObject(response);
+                    List<TopSeller> sellerList = new ArrayList<>();
+                    JSONArray sellerArray = sellers.getJSONArray( "Top sellers");
+                    for(int i=0;i<sellerArray.length();i++){
+                        JSONObject seller = sellerArray.getJSONObject(i);
+                        String id = seller.getString("id");
+                        String name = seller.getString("sellername");
+                        String deal = seller.getString("sellerdeal");
+                        String rating = seller.getString("sellerrating");
+                        String url = seller.getString("sellerlogo");
+                        TopSeller newSeller = new TopSeller(id,name,deal,rating,url);
+                        sellerList.add(newSeller);
+
+                    }
+                    mView.setTopSells(sellerList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG,error.getMessage());
+            }
+        });
+
+        volley.addToRequestQueue(stringRequest,"Topsellers_subcate");
     }
 }

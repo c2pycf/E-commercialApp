@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.fang.walmartproject.cart.ShoppingCartActivity;
 import com.example.fang.walmartproject.login.LoginActivity;
+import com.example.fang.walmartproject.orderHistory.OrderHistoryFragment;
 import com.example.fang.walmartproject.profile.ProfileFragment;
 import com.example.fang.walmartproject.wishList.WishListFragment;
 
@@ -27,6 +28,7 @@ public class HomePageActivity extends AppCompatActivity
 
     HomePagePresenter homePagePresenter;
     NavigationView navigationView;
+    AppController volley;
 
     static String TAG = HomePageActivity.class.getSimpleName();
 
@@ -37,6 +39,7 @@ public class HomePageActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         this.setTitle("Home");
+        volley = AppController.getInstance();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +78,7 @@ public class HomePageActivity extends AppCompatActivity
     }
 
     private void checkSignIn(NavigationView navigationView) {
-        int sign = AppController.getInstance().getSignFlag();
+        int sign = volley.getSignFlag();
         Log.d(TAG,"sign flg" + sign);
         if(sign == 1 ){
             navigationView.getMenu().findItem(R.id.nav_sign).setVisible(false);
@@ -136,6 +139,7 @@ public class HomePageActivity extends AppCompatActivity
             homePagePresenter.onShopHandled();
 
         } else if (id == R.id.nav_my_order) {
+            homePagePresenter.onOrderHandled();
 
         } else if (id == R.id.nav_wish){
             homePagePresenter.onWishListOpen();
@@ -189,6 +193,14 @@ public class HomePageActivity extends AppCompatActivity
     public void showWishList() {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.home_page_content,new WishListFragment()).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void showOrderHistory() {
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.home_page_content,new OrderHistoryFragment()).addToBackStack(null).commit();
+
     }
 
 

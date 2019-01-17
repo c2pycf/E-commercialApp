@@ -17,6 +17,7 @@ import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.adapter.ProductAdapter;
 import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.productCategory.productDetail.ProductDetailFragment;
+import com.smarteist.autoimageslider.SliderLayout;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class ProductCategoryFragment extends Fragment implements ProductCategory
     ProductCategoryPresenter mPresenter;
     RecyclerView recyclerView;
     String cid, scid;
+    SliderLayout sliderLayout;
 
     static private final String TAG = ProductCategoryFragment.class.getSimpleName();
     public ProductCategoryFragment() {
@@ -36,6 +38,8 @@ public class ProductCategoryFragment extends Fragment implements ProductCategory
         View view = inflater.inflate(R.layout.fragment_shop,container,false);
         getActivity().setTitle("Product List");
         recyclerView = view.findViewById(R.id.home_recycle_view);
+        sliderLayout = view.findViewById(R.id.imageSlider);
+        sliderLayout.setVisibility(View.GONE);
         LinearLayoutManager manager = new LinearLayoutManager(container.getContext());
         mPresenter = new ProductCategoryPresenter(this);
         recyclerView.setLayoutManager(manager);

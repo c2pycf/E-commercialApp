@@ -26,7 +26,7 @@ public class CartRepository implements CartDataSource {
 
     @Override
     public void clearCart() {
-
+        localDataSource.clearCart();
     }
 
     @Override

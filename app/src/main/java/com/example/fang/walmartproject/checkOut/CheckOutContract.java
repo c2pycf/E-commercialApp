@@ -10,6 +10,7 @@ public interface CheckOutContract {
         void showToast(String msg);
 
         void showOrderComfirmation(OrderList orderList);
+
     }
 
     interface CheckOutPresenter{

@@ -38,7 +38,7 @@ public class OrderAdapter extends RecyclerView.Adapter{
         final Order order = orderList.getOrder(i);
         final OrderViewHolder viewHolder1 = (OrderViewHolder) viewHolder;
         if(i==0){
-            ((OrderViewHolder) viewHolder).title.setVisibility(View.VISIBLE);
+            viewHolder1.title.setVisibility(View.VISIBLE);
         }
         viewHolder1.orderId.setText(order.getOrderId());
         viewHolder1.orderStatus.setText(order.getOrderStatus());

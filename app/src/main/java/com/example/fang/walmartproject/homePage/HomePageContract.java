@@ -1,6 +1,8 @@
 package com.example.fang.walmartproject.homePage;
 
 import com.example.fang.walmartproject.data.CategoryItem;
+import com.example.fang.walmartproject.data.Product;
+import com.example.fang.walmartproject.data.source.TopSeller;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ public interface HomePageContract {
         void signOut();
 
         void showWishList();
+
+        void showOrderHistory();
 
 
     }
@@ -42,12 +46,16 @@ public interface HomePageContract {
         void showList(List<CategoryItem> itemList);
 
         void showSubCategory(String cid);
+
+        void setTopSells(List<TopSeller> sellers);
     }
 
     interface ShopPresenter{
        void getCategoryList();
 
        void onItemClickHandled(String cid);
+
+       void getTopSells();
     }
 
 }

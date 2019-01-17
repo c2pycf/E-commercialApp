@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
@@ -19,7 +21,10 @@ import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.adapter.SubCategoryAdapter;
 
 import com.example.fang.walmartproject.data.SubCategoryItem;
+import com.example.fang.walmartproject.data.source.TopSeller;
 import com.example.fang.walmartproject.productCategory.ProductCategoryFragment;
+import com.smarteist.autoimageslider.SliderLayout;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.List;
 
@@ -28,6 +33,7 @@ public class SubCategoryFragment extends Fragment implements SubCategoryContract
     AppController volley;
     SubCategoryPresenter mShopPresenter;
     String cid;
+    SliderLayout sliderLayout;
 
     static private String TAG = SubCategoryFragment.class.getSimpleName();
     public SubCategoryFragment() {
@@ -47,6 +53,10 @@ public class SubCategoryFragment extends Fragment implements SubCategoryContract
         getActivity().setTitle("SubCategory");
         volley = AppController.getInstance();
         mShopPresenter = new SubCategoryPresenter(this,cid);
+        sliderLayout = view.findViewById(R.id.imageSlider);
+        sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderLayout.setScrollTimeInSec(1);
+        mShopPresenter.getTopSells();
 
         return view;
     }
@@ -81,5 +91,28 @@ public class SubCategoryFragment extends Fragment implements SubCategoryContract
         productCategoryFragment.setArguments(bundle);
         manager.beginTransaction().replace(R.id.home_page_content,productCategoryFragment).addToBackStack(null).commit();
 
+    }
+
+    @Override
+    public void setTopSells(List<TopSeller> sellerList) {
+        for (int i = 0; i <sellerList.size(); i++) {
+
+            SliderView sliderView = new SliderView(this.getContext());
+
+            TopSeller topSeller = sellerList.get(i);
+            sliderView.setImageUrl(topSeller.getLogo());
+            sliderView.setImageScaleType(ImageView.ScaleType.FIT_CENTER);
+            sliderView.setDescription(topSeller.getName()+"\n"+topSeller.getDeal()+"\n"+"Rating: "+topSeller.getRating());
+            final int finalI = i;
+            sliderView.setOnSliderClickListener(new SliderView.OnSliderClickListener() {
+                @Override
+                public void onSliderClick(SliderView sliderView) {
+                    Toast.makeText(getContext(), "This is slider " + (finalI + 1), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            //at last add this view in your layout :
+            sliderLayout.addSliderView(sliderView);
+        }
     }
 }

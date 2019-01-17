@@ -80,15 +80,18 @@ public class CartLocalDataSource implements CartDataSource {
     @Override
     public void clearCart() {
         database = dbHelper.getWritableDatabase();
-        String query = "Select * from " + CartsPersistenceContract.CartEntry.TABLE_NAME;
-        Cursor cursor = database.rawQuery(query,null);
-        cursor.moveToFirst();
-        if(cursor.getCount()>0) {
-            do {
-                //delete
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
+//        String query = "Select * from " + CartsPersistenceContract.CartEntry.TABLE_NAME;
+//        Cursor cursor = database.rawQuery(query,null);
+//        cursor.moveToFirst();
+//        if(cursor.getCount()>0) {
+//            do {
+//                //delete
+//
+//            } while (cursor.moveToNext());
+//        }
+
+        database.delete(CartsPersistenceContract.CartEntry.TABLE_NAME,null,null);
+        //cursor.close();
 
 
         database.close();

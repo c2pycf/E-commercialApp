@@ -1,5 +1,6 @@
 package com.example.fang.walmartproject.checkOut;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -16,22 +17,26 @@ import com.example.fang.walmartproject.data.source.CartDataSource;
 import com.example.fang.walmartproject.data.source.CartRepository;
 import com.example.fang.walmartproject.data.source.UserDataSource;
 import com.example.fang.walmartproject.data.source.UserRepository;
-import com.simplify.android.sdk.Card;
-import com.simplify.android.sdk.CardToken;
-import com.simplify.android.sdk.Simplify;
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.time.Month;
+
 
 public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
     CheckOutContract.CheckOutView mView;
     CartDataSource cartRepository;
     AppController volley;
     UserDataSource userRepository;
-    Simplify simplify;
+    Stripe stripe;
     float discuontRate = (float) 1.00;
-    static final String SIMPLIFY_API = "sbpb_OTZlNmE0ZDQtYTIzMC00NDQ4LWE0YTMtNzJmOGIwNGQ1Zjk3";
+    static final String SIMPLIFY_API = "pk_test_Bb1D97K4vdVgMi3wmDkH3C8h";
 
     static final String TAG = CheckOutPresenter.class.getSimpleName();
 
@@ -40,6 +45,7 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
         cartRepository = new CartRepository(activity.getBaseContext());
         volley = AppController.getInstance();
         userRepository =  new UserRepository(activity.getBaseContext());
+        stripe = new Stripe(activity,SIMPLIFY_API);
 
     }
 
@@ -100,28 +106,37 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
     @Override
     public void checkPayment(final String address, final String bill, String cardNum, String month, String year, String cvc) {
-//        simplify = new Simplify();
-//        simplify.setApiKey(SIMPLIFY_API);
-//        Card card = new Card()
-//                .setNumber(cardNum)
-//                .setExpMonth(month)
-//                .setExpYear(year)
-//                .setCvc(cvc);
-//
-//        simplify.createCardToken(card, new CardToken.Callback() {
-//            @Override
-//            public void onSuccess(CardToken cardToken) {
-//                mView.showToast("Proceed the order...");
-//                placeOrder(address,bill);
-//            }
-//
-//            @Override
-//            public void onError(Throwable throwable) {
-//                Log.e(TAG, throwable.getMessage());
-//                mView.showToast(throwable.getMessage());
-//            }
-//        });
-        placeOrder(address,bill);
+
+
+        Card card = new Card(
+                cardNum,
+                Integer.parseInt(month),
+                Integer.parseInt(year),
+                cvc
+        );
+
+        if(!card.validateNumber()){
+            mView.showToast("Card Number is not valid");
+        }
+        else if(!card.validateCVC()){
+            mView.showToast("Card CVC is not valid");
+        }
+
+
+        stripe.createToken(card, new TokenCallback() {
+            @Override
+            public void onError(Exception error) {
+                Log.e(TAG,error.getMessage());
+                mView.showToast(error.getMessage());
+            }
+
+            @Override
+            public void onSuccess(Token token) {
+                Log.d(TAG,token.getCard().toString());
+                placeOrder(address,bill);
+            }
+        });
+
 
     }
 
@@ -190,6 +205,7 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
                         }
                         mView.showOrderComfirmation(orderList);
+                        cartRepository.clearCart();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

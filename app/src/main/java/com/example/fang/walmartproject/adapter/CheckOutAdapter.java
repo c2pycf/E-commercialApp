@@ -79,11 +79,11 @@ public class CheckOutAdapter extends RecyclerView.Adapter{
                         itemViewHolder1.yearEditText.getText() != null &&
                         itemViewHolder1.cvcEditText.getText() != null){
                     String address = itemViewHolder1.addressEditText.getText().toString();
-                    String bill = itemViewHolder1.addressEditText.getText().toString();
+                    String bill = itemViewHolder1.billingEditText.getText().toString();
                     String cardNum = itemViewHolder1.cardNumberEditText.getText().toString();
-                    String month = itemViewHolder1.addressEditText.getText().toString();
-                    String year  = itemViewHolder1.addressEditText.getText().toString();
-                    String cvc = itemViewHolder1.addressEditText.getText().toString();
+                    String month = itemViewHolder1.monthEditText.getText().toString();
+                    String year  = itemViewHolder1.yearEditText.getText().toString();
+                    String cvc = itemViewHolder1.cvcEditText.getText().toString();
 //
 //                    int monthInt = Integer.parseInt(month);
 //                    int yearInt = Integer.parseInt(year);
