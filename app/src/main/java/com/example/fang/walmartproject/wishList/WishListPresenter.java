@@ -1,5 +1,6 @@
 package com.example.fang.walmartproject.wishList;
 
+import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.data.WishList;
 import com.example.fang.walmartproject.data.source.CartDataSource;
 import com.example.fang.walmartproject.data.source.CartRepository;
@@ -22,5 +23,32 @@ public class WishListPresenter implements WishListContract.WishListPresenter {
     public void getWishList() {
         WishList wishList =wishListDataSource.getList();
         mView.showWishList(wishList);
+    }
+
+    @Override
+    public void deleteProduct(String id) {
+        wishListDataSource.deleteProduct(id);
+        WishList wishList =wishListDataSource.getList();
+        mView.showWishList(wishList);
+        mView.showToast("Removed");
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+        wishListDataSource.update(product);
+        WishList wishList =wishListDataSource.getList();
+        mView.showWishList(wishList);
+        mView.showToast("Updated");
+
+    }
+
+    @Override
+    public void addToCart(Product product) {
+        wishListDataSource.deleteProduct(product.getId());
+        cartDataSource.saveCart(product);
+        WishList wishList =wishListDataSource.getList();
+        mView.showWishList(wishList);
+        mView.showToast("Added to cart");
+
     }
 }

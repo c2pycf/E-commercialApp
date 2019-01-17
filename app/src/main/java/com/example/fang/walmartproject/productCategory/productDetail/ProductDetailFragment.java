@@ -1,5 +1,6 @@
 package com.example.fang.walmartproject.productCategory.productDetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +22,7 @@ import com.example.fang.walmartproject.data.Product;
 public class ProductDetailFragment extends Fragment implements ProductDetailContract.DetailView{
     Product mProduct;
     RecyclerView recyclerView;
-    ProductDetailContract.DetailPresenter mPresenter;
+    ProductDetailPresenter mPresenter;
     static private final String TAG = ProductDetailFragment.class.getSimpleName();
 
     public ProductDetailFragment() {
@@ -55,7 +56,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        },mPresenter);
         recyclerView.setAdapter(adapter);
 
 
@@ -78,5 +79,14 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
     @Override
     public void addCartResult(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void share(Product product) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Product ID: " + product.getId()+"Product: "+product.getPname()+"\n"+"Prise: " + product.getPrize());
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }

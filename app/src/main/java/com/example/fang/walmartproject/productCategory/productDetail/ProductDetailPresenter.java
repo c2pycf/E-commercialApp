@@ -20,4 +20,9 @@ public class ProductDetailPresenter implements ProductDetailContract.DetailPrese
         String message = "Success";
         mView.addCartResult(message);
     }
+
+    @Override
+    public void shareItem(Product product) {
+        mView.share(product);
+    }
 }

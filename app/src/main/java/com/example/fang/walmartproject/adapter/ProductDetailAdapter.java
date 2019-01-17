@@ -20,6 +20,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.data.Product;
+import com.example.fang.walmartproject.productCategory.productDetail.ProductDetailPresenter;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -33,13 +34,15 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     View.OnClickListener mListener;
     Context context;
     AdapterView.OnItemSelectedListener spinnerListener;
+    ProductDetailPresenter mPresenter;
 
 
-    public ProductDetailAdapter(Product product, View.OnClickListener listener, Context context, AdapterView.OnItemSelectedListener spinnerListener) {
+    public ProductDetailAdapter(Product product, View.OnClickListener listener, Context context, AdapterView.OnItemSelectedListener spinnerListener, ProductDetailPresenter mPresenter) {
         this.product = product;
         mListener = listener;
         this.context = context;
         this.spinnerListener = spinnerListener;
+        this.mPresenter =  mPresenter;
     }
 
     @NonNull
@@ -97,6 +100,12 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
                 productDetailViewHolder.itemCount.setAdapter(adapter);
                 productDetailViewHolder.itemCount.setSelection(0);
                 productDetailViewHolder.itemCount.setOnItemSelectedListener(spinnerListener);
+                productDetailViewHolder.share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPresenter.shareItem(product);
+                    }
+                });
                 break;
 
             case 1:
@@ -122,7 +131,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public class ProductDetailViewHolder extends RecyclerView.ViewHolder{
-        TextView pName, pPrise, pQuantity;
+        TextView pName, pPrise, pQuantity,share;
         NetworkImageView pImage;
         Spinner itemCount;
         Button addCartButton;
@@ -135,6 +144,7 @@ public class ProductDetailAdapter extends RecyclerView.Adapter<RecyclerView.View
             pImage = itemView.findViewById(R.id.nv_product_image_detail);
             itemCount = itemView.findViewById(R.id.sp_product_count);
             addCartButton = itemView.findViewById(R.id.bt_add_cart);
+            share = itemView.findViewById(R.id.tv_share_product);
         }
 
     }

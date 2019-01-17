@@ -17,6 +17,7 @@ import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.R;
 import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.data.WishList;
+import com.example.fang.walmartproject.wishList.WishListPresenter;
 
 import java.text.NumberFormat;
 
@@ -26,13 +27,16 @@ public class WishListAdapter extends RecyclerView.Adapter{
     Context context;
     static final String TAG = WishListAdapter.class.getSimpleName();
     static NumberFormat format = NumberFormat.getCurrencyInstance();
+    WishListPresenter mPresenter;
 
 
-    public WishListAdapter(WishList wishList, Fragment fragment) {
+    public WishListAdapter(WishList wishList, Fragment fragment,WishListPresenter presenter) {
         this.wishList = wishList;
         volley = AppController.getInstance();
 
         this.context=fragment.getContext();
+
+        mPresenter = presenter;
 
     }
 
@@ -66,20 +70,20 @@ public class WishListAdapter extends RecyclerView.Adapter{
         itemViewHolder.removeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mPresenter.deleteProduct(product.getId());
+                mPresenter.deleteProduct(product.getId());
             }
         });
         itemViewHolder.editTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 product.setUserAmount(itemViewHolder.amount.getSelectedItemPosition()+1);
-                //mPresenter.updateProduct(product);
+                mPresenter.updateProduct(product);
             }
         });
         itemViewHolder.saveTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mPresenter.saveLater(product);
+                mPresenter.addToCart(product);
             }
         });
 
