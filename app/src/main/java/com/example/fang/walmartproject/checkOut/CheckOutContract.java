@@ -11,6 +11,7 @@ public interface CheckOutContract {
 
         void showOrderComfirmation(OrderList orderList);
 
+        void showDialog();
     }
 
     interface CheckOutPresenter{

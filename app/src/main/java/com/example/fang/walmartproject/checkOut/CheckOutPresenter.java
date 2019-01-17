@@ -107,7 +107,6 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
     @Override
     public void checkPayment(final String address, final String bill, String cardNum, String month, String year, String cvc) {
 
-
         Card card = new Card(
                 cardNum,
                 Integer.parseInt(month),

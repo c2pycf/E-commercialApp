@@ -62,6 +62,11 @@ public class CheckOutActivity extends AppCompatActivity implements CheckOutContr
     }
 
     @Override
+    public void showDialog() {
+
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;

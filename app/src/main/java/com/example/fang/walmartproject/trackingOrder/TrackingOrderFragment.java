@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fang.walmartproject.R;
@@ -15,6 +16,7 @@ public class TrackingOrderFragment extends Fragment implements TrackingOrderCont
 
     private TextView shipmentId,shipmnentStatus;
     private TrackingOrderPresenter mPresenter;
+    private ImageView trackingImage;
 
     public TrackingOrderFragment() {
     }
@@ -39,6 +41,7 @@ public class TrackingOrderFragment extends Fragment implements TrackingOrderCont
         shipmentId = view.findViewById(R.id.tv_tracking_id);
         shipmnentStatus = view.findViewById(R.id.tv_tracking_status);
         mPresenter = new TrackingOrderPresenter(this);
+        trackingImage = view.findViewById(R.id.tracking_image);
         getActivity().setTitle("Tracking Orders");
         return view;
     }
@@ -50,18 +53,22 @@ public class TrackingOrderFragment extends Fragment implements TrackingOrderCont
         switch (status){
             case("1"):
                 msg = "Your order is confirmed!";
+                trackingImage.setImageResource(R.drawable.baseline_mood_black_48dp);
                 shipmnentStatus.setText(msg);
                 break;
             case("2"):
                 msg = "Your order is dispatched!";
+                trackingImage.setImageResource(R.drawable.baseline_move_to_inbox_black);
                 shipmnentStatus.setText(msg);
                 break;
             case("3"):
                 msg = "Your order is shipping now!";
+                trackingImage.setImageResource(R.drawable.baseline_local_shipping);
                 shipmnentStatus.setText(msg);
                 break;
             case("4"):
                 msg = "Your order is delivered";
+                trackingImage.setImageResource(R.drawable.baseline_check_box);
                 shipmnentStatus.setText(msg);
                 break;
 
