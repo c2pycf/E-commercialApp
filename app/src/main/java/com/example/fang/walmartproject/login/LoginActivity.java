@@ -3,6 +3,7 @@ package com.example.fang.walmartproject.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.AppBarLayout;
 import android.os.Bundle;
 
@@ -46,30 +47,12 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
 
         setActionBar(mToolbar);
 
-
-
-        loginEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         loginButton = findViewById(R.id.bt_login);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.BaseOnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-                int scrollRange = appBarLayout.getTotalScrollRange();
-
-                if (scrollRange + i ==0) {
-                    loginButton.setVisibility(View.VISIBLE);
-                }
-            }
-        });
 
     }
 
     public void onForgetClicked(View view){
-
+        mPresenter.onForgetHandled();
     }
 
     public void onCreateClicked(View view){
@@ -104,5 +87,12 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
 //        Intent homeIntent = new Intent(LoginActivity.this,HomePageActivity.class);
 //        startActivity(homeIntent);
         finish();
+    }
+
+    @Override
+    public void startFindPassword() {
+        Intent Intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+        startActivity(Intent);
+
     }
 }

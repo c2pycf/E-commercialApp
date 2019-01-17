@@ -17,11 +17,6 @@
             android:name=".homePage.HomePageActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity" />
         <activity
@@ -30,7 +25,14 @@
         <activity android:name=".login.RegisterActivity" />
         <activity android:name=".cart.ShoppingCartActivity" />
         <activity android:name=".resetPassword.ResetPasswordActivity" />
-        <activity android:name=".checkOut.CheckOutActivity"></activity>
+        <activity android:name=".checkOut.CheckOutActivity" />
+        <activity android:name=".splashScreen.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

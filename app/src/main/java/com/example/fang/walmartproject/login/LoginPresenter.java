@@ -129,6 +129,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     @Override
     public void onForgetHandled() {
         //findpassowrd page
+        mView.startFindPassword();
     }
 
     @Override

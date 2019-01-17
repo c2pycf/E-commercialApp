@@ -14,8 +14,23 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/walmart_splash</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored." parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:text">@color/colorPrimaryDark</item>
+        <item name="android:borderlessButtonStyle">@color/colorAccent</item>
+
+    </style>
 
 </resources>

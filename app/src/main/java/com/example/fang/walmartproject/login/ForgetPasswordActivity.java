@@ -3,6 +3,7 @@ import com.example.fang.walmartproject.R;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,12 +13,17 @@ public class ForgetPasswordActivity extends AppCompatActivity implements LoginCo
     private LoginContract.ForgetPresenter mPresenter;
     static private final String TAG = ForgetPasswordActivity.class.getSimpleName();
     private EditText emailEditText;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = new ForgetPasswordPresenter(this);
         setContentView(R.layout.activity_forget_password);
         emailEditText = findViewById(R.id.ed_reset_email);
+        toolbar = findViewById(R.id.toolbar_forget);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void onContinueClicked(View view){

@@ -16,7 +16,7 @@ import com.example.fang.walmartproject.adapter.OrderAdapter;
 import com.example.fang.walmartproject.data.Cart;
 import com.example.fang.walmartproject.data.OrderList;
 import com.example.fang.walmartproject.homePage.HomePageActivity;
-import com.stripe.android.Stripe;
+
 
 public class CheckOutActivity extends AppCompatActivity implements CheckOutContract.CheckOutView{
 

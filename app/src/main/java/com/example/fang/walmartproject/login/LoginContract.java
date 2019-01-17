@@ -7,6 +7,8 @@ public interface LoginContract {
         void startRegistration();
 
         void finishSignIn();
+
+        void startFindPassword();
     }
 
     interface ForgetView{
