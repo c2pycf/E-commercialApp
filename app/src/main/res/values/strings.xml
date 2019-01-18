@@ -10,7 +10,7 @@
     <string name="sign_in_subtitle">...for more ways to save time and money.</string>
     <string name="hint_phone_login">Phone (Required)</string>
     <string name="hint_password_login">Password (Required)</string>
-    <string name="sign_in_forget"> <u>Forget password?</u>.
+    <string name="sign_in_forget"> <u>Forgot password?</u>.
     </string>
     <string name="sign_in_create"> <b>New to Walmart? </b> <u>Create an Account</u>.</string>
     <string name="login_button_sign">Login</string>
@@ -83,4 +83,5 @@
     <string name="order_history_empty">You have no order!</string>
     <string name="traking_id">Shipment Id</string>
     <string name="share"><u>Share..</u></string>
+    <string name="unit_prise">Prise</string>
 </resources>

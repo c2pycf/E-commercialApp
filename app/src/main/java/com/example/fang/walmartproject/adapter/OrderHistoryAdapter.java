@@ -21,6 +21,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter{
     Context context;
     OrderHistoryPresenter mPresenter;
 
+
     public OrderHistoryAdapter(OrderList orderList, OrderHistoryPresenter mPresenter) {
         this.orderList = orderList;
         this.mPresenter = mPresenter;
@@ -36,7 +37,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        final Order order = orderList.getOrder(i);
+        int postion = viewHolder.getItemViewType();
+        final Order order = orderList.getOrder(postion);
         final OrderHistoryViewHolder viewHolder1 = (OrderHistoryViewHolder) viewHolder;
         if(orderList.getOrderListSize()==0){
             viewHolder1.title.setVisibility(View.VISIBLE);
@@ -55,6 +57,11 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter{
         });
 
 
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return orderList.getOrderListSize()-1-position;
     }
 
     @Override

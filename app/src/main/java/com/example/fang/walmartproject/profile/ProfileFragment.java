@@ -99,11 +99,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.Profile
 
         progressLayout.setVisibility(View.VISIBLE);
 
-        if(fnameEditText.getText()!=null&&
-                lnameEditText.getText()!=null&&
-                emailEditText.getText()!=null&&
-                phoneEditText.getText()!=null&&
-                addressEditText!=null) {
+        if(!fnameEditText.getText().toString().isEmpty()&&
+                !lnameEditText.getText().toString().isEmpty()&&
+                !emailEditText.getText().toString().isEmpty()&&
+                !phoneEditText.getText().toString().isEmpty()&&
+                !addressEditText.toString().isEmpty()) {
             String fname = fnameEditText.getText().toString();
             String lname = lnameEditText.getText().toString();
             String email = emailEditText.getText().toString();

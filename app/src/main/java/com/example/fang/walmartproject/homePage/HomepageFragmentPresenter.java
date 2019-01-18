@@ -13,6 +13,7 @@ import com.example.fang.walmartproject.data.Product;
 import com.example.fang.walmartproject.data.source.TopSeller;
 import com.example.fang.walmartproject.data.source.UserDataSource;
 import com.example.fang.walmartproject.data.source.UserRepository;
+import com.example.fang.walmartproject.data.source.remote.RemoteDataSource;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,11 +29,13 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
     AppController volley;
     static private final String TAG = HomepageFragmentPresenter.class.getSimpleName();
     UserDataSource reprository;
+    RemoteDataSource remoteDataSource;
 
     public HomepageFragmentPresenter(HomePageFragment context) {
         this.mView = context;
         volley = AppController.getInstance();
         reprository = new UserRepository(context.getContext());
+        remoteDataSource = new RemoteDataSource();
     }
 
     @Override
@@ -47,36 +50,39 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
 
         }
         String url = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?api_key=" + api + "&user_id="+id;
-        final List<CategoryItem> itemList= new ArrayList<>();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject categoryObject = new JSONObject(response);
-                    Log.d(TAG,categoryObject.toString());
-                    JSONArray category = categoryObject.getJSONArray("category");
-                    for(int i=0;i<category.length();i++){
-                        JSONObject item = category.getJSONObject(i);
-                        String cid = item.getString("cid");
-                        String cname = item.getString("cname");
-                        String cdis = item.getString("cdiscription");
-                        String cimageurl = item.getString("cimagerl");
-                        CategoryItem categoryItem = new CategoryItem(cid,cname,cdis,cimageurl);
-                        itemList.add(categoryItem);
-                    }
-                    mView.showList(itemList);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG,error.getMessage());
-            }
-        });
-
-        volley.addToRequestQueue(stringRequest,"Category_list");
+        List<CategoryItem> itemList;
+        remoteDataSource.getListRemote(url,this);
+//        mView.showList(itemList);
+//        final List<CategoryItem> itemList= new ArrayList<>();
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject categoryObject = new JSONObject(response);
+//                    Log.d(TAG,categoryObject.toString());
+//                    JSONArray category = categoryObject.getJSONArray("category");
+//                    for(int i=0;i<category.length();i++){
+//                        JSONObject item = category.getJSONObject(i);
+//                        String cid = item.getString("cid");
+//                        String cname = item.getString("cname");
+//                        String cdis = item.getString("cdiscription");
+//                        String cimageurl = item.getString("cimagerl");
+//                        CategoryItem categoryItem = new CategoryItem(cid,cname,cdis,cimageurl);
+//                        itemList.add(categoryItem);
+//                    }
+//                    mView.showList(itemList);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(TAG,error.getMessage());
+//            }
+//        });
+//
+//        volley.addToRequestQueue(stringRequest,"Category_list");
     }
 
     @Override
@@ -120,4 +126,11 @@ public class HomepageFragmentPresenter implements HomePageContract.ShopPresenter
         volley.addToRequestQueue(stringRequest,"Topsellers");
 
     }
+
+    @Override
+    public void setCetagoryList(List<CategoryItem> itemList) {
+        mView.showList(itemList);
+    }
+
+
 }

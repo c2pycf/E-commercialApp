@@ -54,6 +54,5 @@
         android:onClick="onLoginClicked"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"/>
-
+        style="@style/AppTheme.Button"/>
 </LinearLayout>

@@ -46,6 +46,7 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
         mPresenter = new LoginPresenter(this);
 
         setActionBar(mToolbar);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         loginButton = findViewById(R.id.bt_login);
 
@@ -60,11 +61,13 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
     }
 
     public void onLoginClicked(View view){
-        if (loginEditText.getText()!=null && passwordEditText.getText()!=null ) {
+        if (!loginEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty() ) {
             String phone = loginEditText.getText().toString();
             String password = passwordEditText.getText().toString();
             mPresenter.onLoginHandled(phone,password);
-
+        }
+        else {
+            showToast("Can not be empty.");
         }
 
     }
@@ -94,5 +97,11 @@ public class LoginActivity extends Activity implements LoginContract.LoginView{
         Intent Intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
         startActivity(Intent);
 
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
     }
 }

@@ -20,6 +20,10 @@ public interface CheckOutContract {
         void checkCoupon(String coupon);
 
         void checkPayment(String address,String bill,String cardNum,String monthInt,String yearInt,String cvc);
+
+        void getUserInfor();
     }
+
+
 
 }

@@ -2,31 +2,22 @@ package com.example.fang.walmartproject.login;
 
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.fang.walmartproject.AppController;
 import com.example.fang.walmartproject.data.UserImformation;
 import com.example.fang.walmartproject.data.source.UserDataSource;
 import com.example.fang.walmartproject.data.source.UserRepository;
-import com.example.fang.walmartproject.network.GetDataService;
-import com.example.fang.walmartproject.network.RetrofitClientInstance;
+import com.example.fang.walmartproject.data.source.remote.network.RetrofitClientInstance;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginPresenter implements LoginContract.LoginPresenter {

@@ -71,6 +71,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter{
             @Override
             public void onClick(View v) {
                 //check payment
+                //itemViewHolder1.addressEditText.setText();
                 if (itemViewHolder1.addressEditText.getText() != null &&
                         itemViewHolder1.billingEditText.getText() != null &&
                         itemViewHolder1.cardNumberEditText.getText() != null &&

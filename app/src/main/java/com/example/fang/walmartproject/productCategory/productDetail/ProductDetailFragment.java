@@ -42,7 +42,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         final ProductDetailAdapter adapter = new ProductDetailAdapter(mProduct, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProduct.setUserAmount(1);
+                //mProduct.setUserAmount(1);
                 mPresenter.onAddCartHandled(mProduct);
             }
         }, getContext(), new AdapterView.OnItemSelectedListener() {
@@ -72,6 +72,7 @@ public class ProductDetailFragment extends Fragment implements ProductDetailCont
         recyclerView.setLayoutManager(manager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mPresenter = new ProductDetailPresenter(this);
+        getActivity().setTitle("Product Details");
 
         return view;
     }

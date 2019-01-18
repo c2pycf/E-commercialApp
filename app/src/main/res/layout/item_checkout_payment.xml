@@ -141,7 +141,8 @@
                 android:layout_gravity="center"
                 android:text="@string/bt_order"
                 android:layout_margin="@dimen/activity_horizontal_margin"
-                android:id="@+id/bt_place"/>
+                android:id="@+id/bt_place"
+                style="@style/AppTheme.Button"/>
 
         </LinearLayout>
 

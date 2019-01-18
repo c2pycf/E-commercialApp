@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.RegisterView{
 
     EditText fnameEditText,lnameEditText,addressEditText,emailEditText,phoneEditText,passwordEditText;
@@ -38,14 +40,23 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     public void onContinueClicked(View view){
-        if(fnameEditText.getText()!=null&& lnameEditText.getText()!=null&&addressEditText.getText()!=null&&emailEditText.getText()!=null&&phoneEditText.getText()!=null&&passwordEditText!=null) {
+        if(!fnameEditText.getText().toString().isEmpty()&& !lnameEditText.getText().toString().isEmpty()
+                &&!addressEditText.getText().toString().isEmpty()&&!emailEditText.getText().toString().isEmpty()
+                &&!phoneEditText.getText().toString().isEmpty()&&!passwordEditText.toString().isEmpty()) {
             String fname = fnameEditText.getText().toString();
             String lname = lnameEditText.getText().toString();
             String address = addressEditText.getText().toString();
             String email = emailEditText.getText().toString();
             String phone = phoneEditText.getText().toString();
             String password = passwordEditText.getText().toString();
-            mPresenter.onRegisterHandle(fname,lname,address,password,email,phone);
+
+            Pattern emailPatter = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+            if (emailPatter.matcher(email).matches()) {
+
+                mPresenter.onRegisterHandle(fname, lname, address, password, email, phone);
+            }
+            else showToast("Invalid email format");
         }
     }
 

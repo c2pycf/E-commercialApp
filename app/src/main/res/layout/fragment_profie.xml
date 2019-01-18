@@ -111,7 +111,8 @@
         android:id="@+id/bt_update_pro"
         android:onClick="onUpdateClicked"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        style="@style/AppTheme.Button"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -120,7 +121,8 @@
             android:id="@+id/bt_reset_pro"
             android:onClick="onResetClicked"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            style="@style/AppTheme.Button"/>
 
     </LinearLayout>
 
@@ -133,6 +135,7 @@
         android:text="@string/login_button_sign"
         android:layout_gravity="center_horizontal"
         android:visibility="invisible"
+        style="@style/AppTheme.Button"
         />
 
 </LinearLayout>

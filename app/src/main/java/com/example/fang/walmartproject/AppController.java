@@ -41,7 +41,7 @@ public class AppController extends Application {
         if(mImageLoader == null){
             //Using default cache with size 10 implement customize cache later.
             mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
-                private final LruCache<String, Bitmap>mCache = new LruCache<>(10);
+                private final LruCache<String, Bitmap>mCache = new LruCache<>(20);
                 @Override
                 public Bitmap getBitmap(String url) {
                     return mCache.get(url);

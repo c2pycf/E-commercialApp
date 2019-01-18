@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="480dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/card_view_drawer"
     app:cardUseCompatPadding="true">
@@ -127,7 +127,9 @@
             android:layout_gravity="center"
             android:text="@string/product_detail_add_cart"
             android:id="@+id/bt_add_cart"
-            android:onClick="onAddCortClicked"/>
+            android:onClick="onAddCortClicked"
+            style="@style/AppTheme.Button"
+            android:padding="@dimen/text_margin"/>
 
 
     </LinearLayout>

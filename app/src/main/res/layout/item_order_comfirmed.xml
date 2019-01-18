@@ -157,6 +157,8 @@
             android:layout_gravity="center"
             android:text="@string/bt_detail"
             android:id="@+id/bt_show_order_detail"
+            style="@style/AppTheme.Button"
+            android:padding="@dimen/text_margin"
             />
 
         <android.support.v7.widget.RecyclerView

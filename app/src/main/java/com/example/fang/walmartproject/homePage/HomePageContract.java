@@ -40,6 +40,7 @@ public interface HomePageContract {
 
         void onWishListOpen();
 
+
     }
 
     interface ShopView{
@@ -56,6 +57,8 @@ public interface HomePageContract {
        void onItemClickHandled(String cid);
 
        void getTopSells();
+
+        void setCetagoryList(List<CategoryItem> itemList);
     }
 
 }

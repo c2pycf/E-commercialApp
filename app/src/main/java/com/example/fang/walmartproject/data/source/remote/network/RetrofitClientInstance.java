@@ -1,4 +1,4 @@
-package com.example.fang.walmartproject.network;
+package com.example.fang.walmartproject.data.source.remote.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

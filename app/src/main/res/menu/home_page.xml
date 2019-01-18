@@ -6,7 +6,7 @@
         android:id="@+id/action_cart"
         app:showAsAction="ifRoom"
         android:title="@string/bt_cart"
-        android:icon="@drawable/ic_shopping_cart_18dp"
+        android:icon="@drawable/baseline_shopping_cart_white"
         />
     <item
         android:id="@+id/action_settings"

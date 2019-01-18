@@ -139,6 +139,11 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
     }
 
+    @Override
+    public void getUserInfor() {
+        ///userRepository.getUser()
+    }
+
     private void placeOrder(String address, String bill) {
         UserImformation user = userRepository.getUser();
         String userid = user.getUserId();
@@ -204,6 +209,7 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
                         }
                         mView.showOrderComfirmation(orderList);
+                        mView.showToast("Order placed");
                         cartRepository.clearCart();
 
                     } catch (JSONException e) {
@@ -221,4 +227,6 @@ public class CheckOutPresenter implements CheckOutContract.CheckOutPresenter {
 
 
     }
+
+
 }

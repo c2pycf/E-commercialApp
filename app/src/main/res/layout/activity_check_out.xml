@@ -36,6 +36,8 @@
         android:id="@+id/bt_complete_order"
         android:text="@string/order_complete_bt"
         android:onClick="onCompleteClicked"
+        style="@style/AppTheme.Button"
+        android:padding="@dimen/text_margin"
         />
 
 

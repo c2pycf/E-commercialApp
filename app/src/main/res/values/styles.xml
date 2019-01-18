@@ -26,10 +26,8 @@
         <item name="android:windowBackground">@drawable/walmart_splash</item>
     </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored." parent="Base.TextAppearance.AppCompat.Button">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:text">@color/colorPrimaryDark</item>
-        <item name="android:borderlessButtonStyle">@color/colorAccent</item>
+    <style name="AppTheme.Button" parent="Base.TextAppearance.AppCompat.Widget.Button.Colored">
+        <item name="android:background">@color/colorAccent</item>
 
     </style>
 
